@@ -7,17 +7,15 @@ const Project = React.createClass({
         return (
             <div className="pure-u">
                 <div className="project">
-                    <div className="project-icon">
-                        <img src="" alt=""/>
-                    </div>
-                    <h3>Project name</h3>
-                    <p>Date of edit</p>
+                    <img className="project-icon" src=".build/images/cloudcache.png"/>
+                    <p>Cloudboost</p>
+                    <p>Last edited Nov 8,2016</p>
                     <div className="project-option">
                         <ul>
-                            <li>∂</li>
-                            <li>¥</li>
-                            <li>∆</li>
-                            <li>˚</li>
+                            <li><img src=".build/images/clouddownload.svg" alt=""/></li>
+                            <li><img src=".build/images/share.svg" alt=""/></li>
+                            <li><img src=".build/images/duplicate.svg" alt=""/></li>
+                            <li><img src=".build/images/dustbin.svg" alt=""/></li>
                         </ul>
                     </div>
                 </div>

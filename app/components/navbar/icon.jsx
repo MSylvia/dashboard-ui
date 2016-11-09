@@ -5,7 +5,7 @@ import React from 'react';
 const Icon = React.createClass({
     render: function() {
         return (
-            <img src=".build/images/cblogo.png" alt="cloud"/>
+            <img className="icon" src=".build/images/cblogo.png" alt="cloud"/>
         );
     }
 });

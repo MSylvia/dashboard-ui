@@ -9,7 +9,7 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #FFF;
+    background-color: #F4F4F4;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
 }
@@ -20,4 +20,174 @@ body {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+.app {
+    height: 100%;
+}
+
+.navbar,
+.footer {
+    height: 60px;
+    background-color: #FFF;
+    font-size: 14px;
+}
+
+ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+.inlinelist {
+    display: -webkit-inline-box;
+}
+
+.navbar {
+    .icon {
+        height: 40px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .navlist {
+        float: right;
+        display: flex;
+        height: 100%;
+        li {
+            margin: auto;
+            margin-left: 20px;
+            color: #8b919a;
+            font-size: 1.1em;
+            img {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+            }
+        }
+        li:hover {
+            cursor: pointer;
+            color: #666;
+        }
+        .userbox {
+            margin-top: 20px;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 10%;
+            min-width: 160px;
+            padding: 8px 0;
+            margin: 8px 0 0;
+            font-size: 14px;
+            background-color: #fff;
+            border: none;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
+            display: none;
+            li {
+                height: 30px;
+                color: #000;
+            }
+        }
+        .userbox:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu:hover {
+            display: block;
+        }
+    }
+}
+
+.app-dashproject {
+    min-height: calc(100% - 120px);
+}
+
+.dashproject {
+    padding: 50px 0;
+    .project-head {
+        height: 70px;
+        p {
+            float: left;
+            font-size: 1.9em;
+            font-weight: 100;
+        }
+        .btn {
+            float: right;
+            cursor: pointer;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+            padding: 12px 18px;
+            font-weight: 600;
+            color: #FFF;
+            background-color: #4dd87b;
+        }
+    }
+    .projects-container {
+        padding-top: 50px;
+        .project {
+            padding-top: 30px;
+            width: 320px;
+            background-color: #ECF1F3;
+            text-align: center;
+            img {
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+            }
+            p {
+                font-size: .95em;
+                margin: 15px 0;
+                color: #8b919a;
+            }
+            .project-option {
+                background-color: #FFF;
+                height: 100px;
+                ul {
+                    height: 100%;
+                    display: table;
+                    margin: auto;
+                    li {
+                        display: table-cell;
+                        vertical-align: middle;
+                        img {
+                            height: 25px;
+                            width: 25px;
+                            border-radius: 0;
+                            margin: 0 10px;
+                        }
+                    }
+                }
+            }
+            -webkit-transition: box-shadow .2s,
+            transform .2s;
+        }
+        .project:hover {
+            cursor: pointer;
+            -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+            -webkit-transform: translate(0, -4px);
+        }
+    }
+}
+
+.footer {
+    width: 100%;
+    .container {
+        display: table;
+    }
+    ul {
+        display: table-cell;
+        vertical-align: middle;
+        li {
+            margin-right: 20px;
+            float: left;
+            color: #8b919a;
+        }
+    }
 }

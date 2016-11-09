@@ -6,8 +6,8 @@ const Projecthead = React.createClass({
     render: function() {
         return (
             <div className="project-head">
-                <h1>Projects</h1>
-                <button>+ New Project</button>
+                <p>Projects</p>
+                <div className="btn">+ New Project</div>
             </div>
         );
     }

@@ -8,7 +8,7 @@ const Paths = require('../config/assets');
 // Build styles
 
 Gulp.task('styles', function() {
-    Gulp.src('./assets/styles/index.scss')
+    Gulp.src(Paths.get('/styles'))
         .pipe(Sass().on('error', Sass.logError))
         .pipe(Autoprefixer({
             browsers: ['last 2 versions'],

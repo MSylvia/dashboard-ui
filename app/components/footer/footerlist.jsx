@@ -5,7 +5,7 @@ import React from 'react';
 const Footerlist = React.createClass({
     render: function() {
         return (
-            <ul>
+            <ul className="inlinelist">
                 <li>© Cloudboost</li>
                 <li>Terms</li>
                 <li>Privacy</li>
