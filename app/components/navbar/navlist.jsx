@@ -8,9 +8,7 @@ const Navlist = React.createClass({
     render: function() {
         return (
             <ul className="navlist inlinelist">
-                <li>Upgrade</li>
                 <li>Projects</li>
-                <li>Groups</li>
                 <li>Documentation & Help</li>
                 <li className="userbox">
                     <Userimage />
