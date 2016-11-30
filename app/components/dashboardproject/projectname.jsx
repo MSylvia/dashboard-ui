@@ -6,7 +6,7 @@ const Projectname = React.createClass({
     getInitialState: function() {
         return {
             display: {display: 'none'},
-            src: '.build/images/editpen.svg',
+            src: '/images/editpen.svg',
             value: 'your app name'
         }
     },
@@ -14,12 +14,12 @@ const Projectname = React.createClass({
         if(this.state.display.display === 'none') {
           this.setState({
               display: {display: 'block'},
-              src: '.build/images/closebtn.svg'
+              src: '/images/closebtn.svg'
           });  
       } else{
         this.setState({
             display: {display: 'none'},
-            src: '.build/images/editpen.svg',
+            src: '/images/editpen.svg',
             value: this.refs.input.value
         });
       }   
