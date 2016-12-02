@@ -1,8 +1,9 @@
 'use strict';
 
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Projectname from './projectname.jsx';
 import Progressbar from './progressbar.jsx';
+
 import FileCloudDownload from 'material-ui/svg-icons/file/cloud-download';
 import FileCloudUpload from 'material-ui/svg-icons/file/cloud-upload';
 import Key from 'material-ui/svg-icons/communication/vpn-key';
@@ -21,11 +22,14 @@ const logoStyles = {
 
 const Project = React.createClass({
     render: function () {
+        console.log("inside Project component this.props: ");
+        console.log(this.props);
+
         return (
             <div className="project">
                 <p className="planstatus">Free Plan</p>
                 <Icon style={logoStyles} color={blue500}> </Icon>
-                <Projectname />
+                <p>{this.props.name}</p>
                 <Progressbar />
                 <div className="project-option">
                     <div >
