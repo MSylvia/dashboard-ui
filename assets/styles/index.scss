@@ -34,9 +34,8 @@ body {
   margin: auto;
 }
 
-
 .footer,
-.toolbar{
+.toolbar {
   height: 60px;
   background-color: #FFF;
   font-size: 14px;
@@ -50,6 +49,10 @@ ul {
 
 .inlinelist {
   display: -webkit-inline-box;
+}
+
+.btn {
+  font-weight: bold !important;
 }
 
 .toolbar {
@@ -114,25 +117,13 @@ ul {
           vertical-align: middle;
         }
       }
-      input {
-        height: 30px;
-        width: 110px;
-        margin: auto;
-        outline: none;
-        position: absolute;
-        top: 0;
-        left: 90px;
-        display: none;
-      }
-      .editpen {
-        height: 15px;
-        width: 15px;
-        margin-left: 15px;
-      }
       p {
-        font-size: .95em;
+        font-size: 1.2em;
         margin: 15px 0;
         color: #8b919a;
+      }
+      .planstatus {
+        font-size: 0.8em;
       }
       .progress_bar {
         margin-bottom: 20px;
@@ -182,5 +173,82 @@ ul {
       float: left;
       color: #8b919a;
     }
+  }
+}
+
+//Remove classes that are not needed for our app
+.custom-modal {
+  .modal-header {
+    padding: 40px 40px 10px 40px;
+  }
+
+  .modal-body {
+    padding: 10px 40px 40px 40px;
+  }
+
+  .modal-footer {
+    padding: 10px 40px 40px 40px;
+  }
+
+  .modal-header button.close, .modal-body button.close, .modal-footer button.close {
+    font-size: 40px;
+    font-weight: 200;
+    color: #798291;
+  }
+
+  .modal-title {
+    font-weight: normal;
+    font-size: 28px;
+  }
+
+  .modal-body {
+    background-color: white;
+  }
+
+  input, select {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #dadde2;
+    border-radius: 2px;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  }
+  input:focus, select:focus {
+    box-shadow: none;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+
+  body .modal-backdrop {
+    background-color: #0f1e37;
+  }
+  body .modal-backdrop.in {
+    background-color: #0f1e37;
+    opacity: .5;
+  }
+
+  .modal-content {
+    border: 1px solid transparent;
+    -moz-box-shadow: 0 4px 32px rgba(31, 32, 35, 0.07);
+    -webkit-box-shadow: 0 4px 32px rgba(31, 32, 35, 0.07);
+    box-shadow: 0 4px 32px rgba(31, 32, 35, 0.07);
+  }
+
+  .modal-header {
+    border: none;
+  }
+  .btn {
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 6px 24px !important;
+    letter-spacing: 0.02em !important;
   }
 }

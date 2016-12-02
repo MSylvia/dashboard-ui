@@ -1,9 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {GridList} from 'material-ui/GridList';
 import Project from './project.jsx';
-const xhrClient = require('../../xhrClient');
+import * as actions from '../../actions';
+import {connect} from 'react-redux';
+import {Grid, Row, Col} from 'react-bootstrap'
 
 const styles = {
     root: {
@@ -13,20 +14,36 @@ const styles = {
 };
 
 class Projectscontainer extends React.Component {
+
+    componentWillMount() {
+        this.props.fetchApps();
+    }
+
     render() {
+        console.log("Inside project container, state :");
+        console.log(this.props);
         return (
             <div style={styles.root}>
-                <GridList cellHeight="auto" cols={ /*((window? window.innerWidth:1000) * 0.8)/360 */ 3 }
-                          style={styles.gridList} className="projects-container">
-                    <Project />
-                    <Project />
-                    <Project />
-                    <Project />
-                    <Project />
-                </GridList>
+                <Grid className="projects-container">
+                    <Row className="show-grid">
+                        {this.props.apps.map(app =>
+                            <Col sm={12} md={6} lg={4} key={app._id}>
+                                <Project key={app._id} {...app} />
+                            </Col>
+                        )}
+                    </Row>
+                </Grid>
             </div>
         );
     }
 }
 
-export default Projectscontainer;
+const mapStateToProps = (state) => {
+    if (state == null) {
+        return {apps: []}
+    }
+    return {
+        apps: state
+    };
+};
+export default connect(mapStateToProps, actions)(Projectscontainer);

@@ -10,7 +10,7 @@ const Dashboardproject = React.createClass({
             <div className="dashproject">
                 <div className="container">
                     <Projecthead />
-                    <Projectscontainer />
+                    <Projectscontainer  />
                 </div>
             </div>
         );
