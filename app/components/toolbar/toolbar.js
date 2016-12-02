@@ -22,7 +22,7 @@ export default class ToolbarExamplesSimple extends React.Component {
             <div style={{backgroundColor: "#FFF"}}>
                 <Toolbar className="toolbar" style={{backgroundColor: "#FFF"}}>
                     <ToolbarGroup firstChild={true}>
-                        <img className="icon" src="/images/cblogo.png" alt="cloud"/>
+                        <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
                     </ToolbarGroup>
                     <ToolbarGroup>
                         <ToolbarTitle text="Quickstart"/>
