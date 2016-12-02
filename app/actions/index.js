@@ -23,9 +23,10 @@ export function fetchApps() {
                     payload: [...response.data]
                 });
             })
-            .catch(response => {
-                console.log("inside fetch Apps error catch");
-                return dispatch(authError(response.data.error));
+            .catch(error => {
+                console.log("inside fetch Apps error catch error: ");
+                console.log(error);
+                //return dispatch(authError(response.data.error));
             });
 
     };
