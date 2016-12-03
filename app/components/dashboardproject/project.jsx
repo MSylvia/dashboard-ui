@@ -30,7 +30,7 @@ const Project = React.createClass({
 
         return (
             <div className="project">
-                <p className="planstatus">{planName}</p>
+                <div className="plan-status">{planName}</div>
                 <Icon style={logoStyles} color={blue500}> </Icon>
                 <Projectname name={this.props.name} edit={false}/>
                 <Progressbar />

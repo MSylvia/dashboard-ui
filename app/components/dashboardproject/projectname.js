@@ -5,7 +5,7 @@
 
 import React from 'react';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import CloseIcon from 'material-ui/svg-icons/navigation/close'
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import {grey500} from 'material-ui/styles/colors';
 
 const iconStyles = {
@@ -16,7 +16,7 @@ const iconStyles = {
 
 const Projectname = React.createClass({
     render: function () {
-        if (this.props.edit == false) {
+        if (this.props.edit === false) {
             return (
                 <div className="relative-pos">
                     <p onClick={() => {

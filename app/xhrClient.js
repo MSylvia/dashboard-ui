@@ -1,7 +1,7 @@
 /**
  * Created by Darkstar on 11/30/2016.
  */
-"use strict"
+'use strict';
 const Axios = require('axios');
 //todo: read API URL from config file
 //todo: change this again when doing umiversal rendering

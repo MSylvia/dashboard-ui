@@ -7,16 +7,16 @@ import xhrClient from '../xhrClient';
 
 export function authError(error) {
     return {
-        type: AUTH_ERROR,
+        type: 'AUTH_ERROR',
         payload: error
     };
 }
 
 export function fetchApps() {
 
-    console.log("inside fetchApp action creator");
+    console.log('inside fetchApp action creator');
     return function (dispatch) {
-        xhrClient.get("app")
+        xhrClient.get('app')
             .then(response => {
                 dispatch({
                     type: 'FETCH_APPS',
@@ -24,7 +24,7 @@ export function fetchApps() {
                 });
             })
             .catch(error => {
-                console.log("inside fetch Apps error catch error: ");
+                console.log('inside fetch Apps error catch error: ');
                 console.log(error);
                 //return dispatch(authError(response.data.error));
             });

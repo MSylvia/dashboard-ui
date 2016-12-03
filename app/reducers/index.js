@@ -5,8 +5,8 @@
 
 export default function (state = [], action) {
     switch (action.type) {
-        case  "FETCH_APPS":
-            console.log("Inside fetch apps reducer")
+        case  'FETCH_APPS':
+            console.log('Inside fetch apps reducer');
             console.log([...state, ...action.payload]);
             return [...state, ...action.payload];
     }
