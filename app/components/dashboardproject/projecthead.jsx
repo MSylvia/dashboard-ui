@@ -3,34 +3,20 @@
 import React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
 
-const Projecthead = React.createClass({
-    getInitialState() {
-        return {
-            showModal: false,
-            value: ''
-        };
-    },
+class Projecthead extends React.Component {
 
-    close() {
-        this.setState({showModal: false});
-    },
+    state = {
+        showModal: false,
+        value: ''
+    };
 
-    open() {
-        this.setState({showModal: true});
-    },
+    close = () => this.setState({showModal: false});
 
-    getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
-    },
+    open = () => this.setState({showModal: true});
 
-    handleChange(e) {
-        this.setState({value: e.target.value});
-    },
-    render: function () {
+    handleChange = (e) => this.setState({value: e.target.value});
 
+    render() {
         return (
             <div className="project-head">
                 <p>Projects</p>
@@ -54,6 +40,6 @@ const Projecthead = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default Projecthead;
