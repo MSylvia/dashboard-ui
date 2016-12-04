@@ -183,13 +183,9 @@ ul {
 }
 
 //Remove classes that are not needed for our app
-.custom-modal {
+%modal-common {
   .modal-header {
     padding: 40px 40px 10px 40px;
-  }
-
-  .modal-body {
-    padding: 10px 40px 40px 40px;
   }
 
   .modal-footer {
@@ -257,5 +253,35 @@ ul {
     border-radius: 4px !important;
     padding: 6px 24px !important;
     letter-spacing: 0.02em !important;
+  }
+}
+
+.custom-modal {
+  .modal-body {
+    padding: 10px 40px 40px 40px;
+  }
+  @extend %modal-common;
+}
+
+.app-setting {
+  @extend %modal-common;
+
+  .modal-body {
+    padding: 0;
+    .tab-content {
+      padding: 20px;
+      .tab-pane {
+        padding: 20px;
+      }
+      .btn{
+        float: right;
+      }
+      .input-group {
+        margin: 20px 0 20px 0;
+      }
+      .td{
+        align:center;
+      }
+    }
   }
 }
