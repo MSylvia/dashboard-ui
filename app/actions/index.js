@@ -38,3 +38,13 @@ export const addApp = (name) => {
         }
     };
 };
+
+export const saveAppName = (id,name) => {
+    return {
+        type: 'SAVE_APP_NAME',
+        payload: {
+            _id: id,
+            name: name
+        }
+    };
+};
