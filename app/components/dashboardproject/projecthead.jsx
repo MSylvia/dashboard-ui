@@ -19,6 +19,15 @@ class Projecthead extends React.Component {
 
     handleChange = (e) => this.setState({value: e.target.value});
 
+    createApp = () => {
+        let temp = addApp(this.state.value);
+        console.log("dispatch Add App :" + JSON.stringify(temp));
+        this.props.dispatch(addApp(this.state.value));
+        this.setState({
+            showModal: false, value: ''
+        });
+    };
+
     render() {
 
         console.log(this.props);
@@ -40,12 +49,7 @@ class Projecthead extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.close}>Cancel</Button>
-                        <Button bsStyle="primary" onClick={() => {
-                            let temp = addApp(this.state.value);
-                            console.log("dispatch Add App :"+ JSON.stringify(temp));
-                            this.props.dispatch(addApp(this.state.value));
-                        }
-                        }>Create App</Button>
+                        <Button bsStyle="primary" onClick={this.createApp}>Create App</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
