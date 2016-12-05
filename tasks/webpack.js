@@ -81,7 +81,7 @@ Gulp.task('webpack:dev-build', function() {
         if (err) {
             throw new Gutil.PluginError('webpack', err);
         }
-        Gutil.log('[webpack:build-dev]', stats.toString({
+        Gutil.log('[webpack:dev-build]', stats.toString({
             colors: true,
             chunks: false
         }));

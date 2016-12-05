@@ -1,7 +1,7 @@
 /**
  * Created by Darkstar on 11/30/2016.
  */
-"use strict";
+'use strict';
 
 const React = require('react');
 const ReactRouter = require('react-router');
@@ -22,7 +22,7 @@ class Routes extends React.Component {
         return (
             <Provider store={store}>
                 <Router history={browserHistory} routes={routesConfig}  />
-            </Provider>)
+            </Provider>);
     }
 }
 

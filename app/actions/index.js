@@ -3,31 +3,38 @@
  */
 
 import * as api from '../fakeAPI';
-import xhrClient from '../xhrClient';
+import {xhrDashBoardClient} from '../xhrClient';
+import {acountsURL} from '../config';
 
-export function authError(error) {
-    return {
-        type: AUTH_ERROR,
-        payload: error
-    };
-}
-
+let nextTodoId = 0;
 export function fetchApps() {
 
-    console.log("inside fetchApp action creator");
+    console.log('inside fetchApp action creator');
     return function (dispatch) {
-        xhrClient.get("app")
+        xhrDashBoardClient.get('app')
             .then(response => {
                 dispatch({
                     type: 'FETCH_APPS',
-                    payload: [...response.data]
+                    payload: response.data
                 });
             })
             .catch(error => {
-                console.log("inside fetch Apps error catch error: ");
+                console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-                //return dispatch(authError(response.data.error));
+                window.location = acountsURL;
             });
 
     };
 }
+
+
+export const addApp = (name) => {
+    return {
+        type: 'ADD_APP',
+        payload: {
+            _id: (nextTodoId++).toString(),
+            name: name,
+            planId: 1
+        }
+    };
+};

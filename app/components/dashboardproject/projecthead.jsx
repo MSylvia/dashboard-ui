@@ -1,36 +1,36 @@
-'use strict';
-
 import React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
+import {addApp} from '../../actions';
+import {connect} from 'react-redux';
 
-const Projecthead = React.createClass({
-    getInitialState() {
-        return {
+class Projecthead extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
             showModal: false,
             value: ''
         };
-    },
+    }
 
-    close() {
-        this.setState({showModal: false});
-    },
+    close = () => this.setState({showModal: false});
 
-    open() {
-        this.setState({showModal: true});
-    },
+    open = () => this.setState({showModal: true});
 
-    getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
-    },
+    handleChange = (e) => this.setState({value: e.target.value});
 
-    handleChange(e) {
-        this.setState({value: e.target.value});
-    },
-    render: function () {
+    createApp = () => {
+        let temp = addApp(this.state.value);
+        console.log("dispatch Add App :" + JSON.stringify(temp));
+        this.props.dispatch(addApp(this.state.value));
+        this.setState({
+            showModal: false, value: ''
+        });
+    };
 
+    render() {
+
+        console.log(this.props);
         return (
             <div className="project-head">
                 <p>Projects</p>
@@ -44,16 +44,21 @@ const Projecthead = React.createClass({
                             value={this.state.value}
                             placeholder="Pick a good name"
                             onChange={this.handleChange}
+
                         />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.close}>Cancel</Button>
-                        <Button bsStyle="primary">Create App</Button>
+                        <Button bsStyle="primary" onClick={this.createApp}>Create App</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
         );
     }
-});
-
-export default Projecthead;
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: dispatch
+    };
+};
+export default connect(null, mapDispatchToProps)(Projecthead);

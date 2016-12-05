@@ -19,8 +19,8 @@ export default class ToolbarExamplesSimple extends React.Component {
 
     render() {
         return (
-            <div style={{backgroundColor: "#FFF"}}>
-                <Toolbar className="toolbar" style={{backgroundColor: "#FFF"}}>
+            <div style={{backgroundColor: '#FFF'}}>
+                <Toolbar className='toolbar' style={{backgroundColor: '#FFF'}}>
                     <ToolbarGroup firstChild={true}>
                         <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
                     </ToolbarGroup>
