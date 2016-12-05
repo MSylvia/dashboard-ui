@@ -1,14 +1,17 @@
-'use strict';
-
 import React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
+import {addApp} from '../../actions';
+import {connect} from 'react-redux';
 
 class Projecthead extends React.Component {
 
-    state = {
-        showModal: false,
-        value: ''
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            value: ''
+        };
+    }
 
     close = () => this.setState({showModal: false});
 
@@ -17,6 +20,8 @@ class Projecthead extends React.Component {
     handleChange = (e) => this.setState({value: e.target.value});
 
     render() {
+
+        console.log(this.props);
         return (
             <div className="project-head">
                 <p>Projects</p>
@@ -30,16 +35,26 @@ class Projecthead extends React.Component {
                             value={this.state.value}
                             placeholder="Pick a good name"
                             onChange={this.handleChange}
+
                         />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.close}>Cancel</Button>
-                        <Button bsStyle="primary">Create App</Button>
+                        <Button bsStyle="primary" onClick={() => {
+                            let temp = addApp(this.state.value);
+                            console.log("dispatch Add App :"+ JSON.stringify(temp));
+                            this.props.dispatch(addApp(this.state.value));
+                        }
+                        }>Create App</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
         );
     }
 }
-
-export default Projecthead;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: dispatch
+    };
+};
+export default connect(null, mapDispatchToProps)(Projecthead);

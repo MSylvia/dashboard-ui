@@ -9,6 +9,15 @@ export default function (state = [], action) {
             console.log('Inside fetch apps reducer');
             console.log([...state, ...action.payload]);
             return [...state, ...action.payload];
+
+        case 'ADD_APP':
+            console.log('Inside addApp reducer');
+            return [
+                ...state,
+                action.payload
+            ];
+
+        default:
+            return state;
     }
-    return state;
 }

@@ -6,6 +6,7 @@ import * as api from '../fakeAPI';
 import {xhrDashBoardClient} from '../xhrClient';
 import {acountsURL} from '../config';
 
+let nextTodoId = 0;
 export function fetchApps() {
 
     console.log('inside fetchApp action creator');
@@ -14,7 +15,7 @@ export function fetchApps() {
             .then(response => {
                 dispatch({
                     type: 'FETCH_APPS',
-                    payload: [...response.data]
+                    payload: response.data
                 });
             })
             .catch(error => {
@@ -25,3 +26,15 @@ export function fetchApps() {
 
     };
 }
+
+
+export const addApp = (name) => {
+    return {
+        type: 'ADD_APP',
+        payload: {
+            _id: (nextTodoId++).toString(),
+            name: name,
+            planId: 1
+        }
+    };
+};
