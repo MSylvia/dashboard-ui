@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {PropTypes} from 'react';
-import Projectname from './projectname.js';
+import ProjectName from './projectname.js';
 import Progressbar from './progressbar.jsx';
 import {Modal} from 'react-bootstrap';
 import AppSetting from './appSetting';
@@ -54,7 +54,11 @@ const Project = React.createClass({
             <div className="project">
                 <div className="plan-status">{planName}</div>
                 <Icon style={logoStyles} color={blue500}> </Icon>
-                <Projectname name={this.props.name} edit={false}/>
+                <ProjectName
+                    name={this.props.name}
+                    id={this.props._id}
+                    edit={ (typeof this.props.editMode == 'undefined') ? false : this.props.editMode}
+                />
                 <Progressbar />
                 <div className="project-option">
                     <div >

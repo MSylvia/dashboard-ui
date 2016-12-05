@@ -14,8 +14,8 @@ const iconStyles = {
     height: 16,
 };
 
-const Projectname = React.createClass({
-    render: function () {
+class ProjectName extends React.Component {
+    render() {
         if (this.props.edit === false) {
             return (
                 <div className="relative-pos">
@@ -41,6 +41,6 @@ const Projectname = React.createClass({
             );
         }
     }
-});
+}
 
-export default Projectname;
+export default ProjectName;
