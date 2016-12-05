@@ -1,23 +1,10 @@
-/**
- * Created by Darkstar on 12/2/2016.
- */
+import {combineReducers} from 'redux';
+import apps from './apps';
+import user from './user';
 
+const todoApp = combineReducers({
+    apps,
+    user,
+});
 
-export default function (state = [], action) {
-    switch (action.type) {
-        case  'FETCH_APPS':
-            console.log('Inside fetch apps reducer');
-            console.log([...state, ...action.payload]);
-            return [...state, ...action.payload];
-
-        case 'ADD_APP':
-            console.log('Inside addApp reducer');
-            return [
-                ...state,
-                action.payload
-            ];
-
-        default:
-            return state;
-    }
-}
+export default todoApp;
