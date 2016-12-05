@@ -11,22 +11,36 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
-import {getCookie} from './helper';
+import {getCookie, saveState, loadState} from './helper';
+import throttle from 'lodash/throttle';
 
 import routesConfig from './routesConfig';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
-const persistedState = {
-    user: {
-        isLogggedIn: getCookie('userId') !== null,
-        fullName: getCookie('userFullname'),
-        userId: getCookie('userId'),
-        email: getCookie('email'),
-    }
-};
+let persistedState = loadState();
+if (persistedState == undefined) {
+    console.log('presistedState not set');
+    persistedState = {
+        user: {
+            isLogggedIn: getCookie('userId') !== null,
+            fullName: getCookie('userFullname'),
+            userId: getCookie('userId'),
+            email: getCookie('email'),
+        }
+    };
+}
 
 const store = createStoreWithMiddleware(reducers, persistedState);
+
+store.subscribe(throttle(() => {
+    console.log("subscribe :");
+    console.log("typeof saveState");
+    console.log(typeof saveState);
+    console.log(store.getState());
+    saveState(store.getState())
+}, 1000));
+
 class Routes extends React.Component {
     render() {
         return (
