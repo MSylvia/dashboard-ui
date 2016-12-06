@@ -3,6 +3,9 @@
  */
 'use strict';
 
+
+import {saveAppName} from '../../actions';
+import {connect} from 'react-redux';
 import React from 'react';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
@@ -14,16 +17,27 @@ const iconStyles = {
     height: 16,
 };
 
-const Projectname = React.createClass({
-    render: function () {
-        if (this.props.edit === false) {
+class ProjectName extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            editMode: false,
+            value: this.props.name
+        };
+    }
+
+    editName = () => this.setState({editMode: true});
+    closeEditing = () => this.setState({editMode: false});
+    handleChange = (e) => this.setState({value: e.target.value});
+
+    render() {
+        if (this.state.editMode === false) {
+            console.log(this.state.editMode);
             return (
                 <div className="relative-pos">
-                    <p onClick={() => {
-                        console.log(this.props.edit);
-                    }}>
+                    <p>
                         {this.props.name}
-                        <EditIcon style={iconStyles} color={grey500}/>
+                        <EditIcon style={iconStyles} color={grey500} onClick={this.editName}/>
                     </p>
                 </div>
             );
@@ -31,16 +45,26 @@ const Projectname = React.createClass({
         else {
             return (
                 <div className="relative-pos">
-                    <span>
-                        <input ref="input" defaultValue={this.props.name}/>
+                    <p>
+                        <input ref="input" defaultValue={this.props.name} onChange={this.handleChange}/>
                         <CloseIcon style={iconStyles} color={grey500} onClick={() => {
-                            console.log(this.props.edit);
+                            this.closeEditing();
+                            this.props.onNameChange(this.props.id, this.state.value);
                         }}/>
-                    </span>
+                    </p>
                 </div>
             );
         }
     }
-});
+}
 
-export default Projectname;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onNameChange: (id, newName) => {
+            dispatch(saveAppName(id, newName));
+        },
+    };
+};
+
+export default connect(null, mapDispatchToProps)(ProjectName);

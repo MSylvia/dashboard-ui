@@ -5,8 +5,8 @@
 import * as api from '../fakeAPI';
 import {xhrDashBoardClient} from '../xhrClient';
 import {acountsURL} from '../config';
+import { v4 } from 'node-uuid'
 
-let nextTodoId = 0;
 export function fetchApps() {
 
     console.log('inside fetchApp action creator');
@@ -21,7 +21,7 @@ export function fetchApps() {
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-                window.location = acountsURL;
+                //window.location = acountsURL;
             });
 
     };
@@ -32,9 +32,19 @@ export const addApp = (name) => {
     return {
         type: 'ADD_APP',
         payload: {
-            _id: (nextTodoId++).toString(),
+            _id: v4(),
             name: name,
             planId: 1
+        }
+    };
+};
+
+export const saveAppName = (id,name) => {
+    return {
+        type: 'SAVE_APP_NAME',
+        payload: {
+            _id: id,
+            name: name
         }
     };
 };
