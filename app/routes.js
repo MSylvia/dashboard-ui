@@ -20,7 +20,7 @@ const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 let persistedState = loadState();
 if (persistedState == undefined) {
-    console.log('presistedState not set');
+    console.log('persistedState not set');
     persistedState = {
         user: {
             isLogggedIn: getCookie('userId') !== null,
@@ -34,10 +34,6 @@ if (persistedState == undefined) {
 const store = createStoreWithMiddleware(reducers, persistedState);
 
 store.subscribe(throttle(() => {
-    console.log("subscribe :");
-    console.log("typeof saveState");
-    console.log(typeof saveState);
-    console.log(store.getState());
     saveState(store.getState())
 }, 1000));
 

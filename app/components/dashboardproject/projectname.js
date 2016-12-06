@@ -45,13 +45,13 @@ class ProjectName extends React.Component {
         else {
             return (
                 <div className="relative-pos">
-                    <span>
+                    <p>
                         <input ref="input" defaultValue={this.props.name} onChange={this.handleChange}/>
                         <CloseIcon style={iconStyles} color={grey500} onClick={() => {
                             this.closeEditing();
                             this.props.onNameChange(this.props.id, this.state.value);
                         }}/>
-                    </span>
+                    </p>
                 </div>
             );
         }
