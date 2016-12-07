@@ -26,18 +26,19 @@ class ProjectName extends React.Component {
         };
     }
 
-    editName = () => this.setState({editMode: true});
-    closeEditing = () => this.setState({editMode: false});
-    handleChange = (e) => this.setState({value: e.target.value});
-
     render() {
+
+        const editName = () => this.setState({editMode: true});
+        const closeEditing = () => this.setState({editMode: false});
+        const handleChange = (e) => this.setState({value: e.target.value});
+
         if (this.state.editMode === false) {
             console.log(this.state.editMode);
             return (
                 <div className="relative-pos">
                     <p>
                         {this.props.name}
-                        <EditIcon style={iconStyles} color={grey500} onClick={this.editName}/>
+                        <EditIcon style={iconStyles} color={grey500} onClick={editName}/>
                     </p>
                 </div>
             );
@@ -46,9 +47,9 @@ class ProjectName extends React.Component {
             return (
                 <div className="relative-pos">
                     <p>
-                        <input ref="input" defaultValue={this.props.name} onChange={this.handleChange}/>
+                        <input ref="input" defaultValue={this.props.name} onChange={handleChange}/>
                         <CloseIcon style={iconStyles} color={grey500} onClick={() => {
-                            this.closeEditing();
+                            closeEditing();
                             this.props.onNameChange(this.props.id, this.state.value);
                         }}/>
                     </p>

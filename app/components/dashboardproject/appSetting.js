@@ -41,7 +41,30 @@ const AppSetting = () => {
                         <UserAccess />
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
-                        Tab 2 content
+                        <FormGroup>
+                            <label htmlFor="firstName">App ID</label>
+                            <InputGroup>
+                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
+                                <FormControl type="text" disabled/>
+                            </InputGroup>
+                        </FormGroup>
+                        <FormGroup>
+                            <label htmlFor="firstName">Master Key</label>
+                            <InputGroup>
+                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
+                                <FormControl type="text" value="test" disabled/>
+                                <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
+                            </InputGroup>
+                        </FormGroup>
+                        <FormGroup>
+                            <label htmlFor="firstName">Client Key</label>
+                            <InputGroup>
+                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
+                                <FormControl type="text" disabled/>
+                                <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
+                            </InputGroup>
+                        </FormGroup>
+                        <Clearfix/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
                         <Upgrade onSubmit={handleSubmit}/>
@@ -50,7 +73,7 @@ const AppSetting = () => {
 
             </div>
         </Tab.Container>
-    )
+    );
 };
 
 export default AppSetting;
