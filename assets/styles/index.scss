@@ -272,18 +272,34 @@ ul {
       padding: 20px;
       .tab-pane {
         padding: 20px;
+        #expiry {
+          margin-top: 27%;
+        }
+        #CVV {
+          margin: 0 !important;
+        }
+      }
+
+      #left-tabs-example-pane-third {
+        padding-top: 0;
       }
       .btn {
         float: right;
       }
       .input-group {
         margin: 20px 0 20px 0;
+        input[disabled] {
+          background-color: #fefefe;
+        }
       }
-      .td {
+
+      td {
         align: center;
       }
       //Price plan start
       .panel-pricing {
+        font-size: 12px;
+        margin-bottom: 0;
         -moz-transition: all .3s ease;
         -o-transition: all .3s ease;
         -webkit-transition: all .3s ease;
@@ -292,11 +308,22 @@ ul {
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
       }
       .panel-pricing .panel-heading {
-        padding: 20px 10px;
+        text-align: center;
+        padding: 10px 0 10px 5px;
+        font-size: 25px;
+        h1 {
+          margin: 0;
+          list-style: none;
+          a {
+            color: #3c763d;
+            text-decoration: none;
+          }
+        }
       }
       .panel-pricing .list-group-item {
         color: #777777;
         border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+        padding: 5px 5px;
       }
       .panel-pricing .list-group-item:last-child {
         border-bottom-right-radius: 0px;
@@ -308,11 +335,15 @@ ul {
       }
       .panel-pricing .panel-body {
         background-color: #f0f0f0;
-        font-size: 30px;
+        font-size: 20px;
         color: #777777;
-        padding: 20px;
+        padding: 10px;
         margin: 0px;
+        p {
+          margin: 0;
+        }
       }
+
       //Price plan stop
     }
   }

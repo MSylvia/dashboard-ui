@@ -15,13 +15,9 @@ rules:
   linebreak-style:
     - error
     - unix
-  quotes:
-    - error
-    - single
   semi:
     - error
     - always
-  curly: error
   eqeqeq: error
   no-empty: warn
   no-console: off

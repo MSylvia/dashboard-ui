@@ -5,7 +5,7 @@
 import * as api from '../fakeAPI';
 import {xhrDashBoardClient} from '../xhrClient';
 import {acountsURL} from '../config';
-import { v4 } from 'node-uuid'
+import {v4} from 'node-uuid';
 
 export function fetchApps() {
 
@@ -39,7 +39,7 @@ export const addApp = (name) => {
     };
 };
 
-export const saveAppName = (id,name) => {
+export const saveAppName = (id, name) => {
     return {
         type: 'SAVE_APP_NAME',
         payload: {

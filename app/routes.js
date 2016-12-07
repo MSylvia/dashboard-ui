@@ -19,7 +19,7 @@ import routesConfig from './routesConfig';
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 let persistedState = loadState();
-if (persistedState == undefined) {
+if (persistedState === undefined) {
     console.log('persistedState not set');
     persistedState = {
         user: {
@@ -34,7 +34,7 @@ if (persistedState == undefined) {
 const store = createStoreWithMiddleware(reducers, persistedState);
 
 store.subscribe(throttle(() => {
-    saveState(store.getState())
+    saveState(store.getState());
 }, 1000));
 
 class Routes extends React.Component {
