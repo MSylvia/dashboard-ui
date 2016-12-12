@@ -132,14 +132,6 @@ class Upgrade extends React.Component {
     }
 }
 
-export
-default
-
-reduxForm({
+export default reduxForm({
     form: 'upgrade' // a unique name for this form
-})
-
-(
-    Upgrade
-)
-;
+})(Upgrade);

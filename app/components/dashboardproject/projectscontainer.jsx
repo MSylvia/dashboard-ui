@@ -40,7 +40,7 @@ class Projectscontainer extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log('Inside MapStateToProps for Project container state: ');
-    console.log(state);
+    console.log(JSON.stringify(state));
     if (state == null) {
         return {apps: []}
     }
