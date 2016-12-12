@@ -6,7 +6,7 @@ import Progressbar from './progressbar.jsx';
 import {Modal} from 'react-bootstrap';
 import AppSetting from './appSetting';
 
-import FileCloudDownload from 'material-ui/svg-icons/file/cloud-download';
+import IconDelete from 'material-ui/svg-icons/action/delete';
 import FileCloudUpload from 'material-ui/svg-icons/file/cloud-upload';
 import Key from 'material-ui/svg-icons/communication/vpn-key';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
@@ -14,7 +14,8 @@ import Icon from 'material-ui/svg-icons/file/cloud';
 import {grey500, blue500} from 'material-ui/styles/colors';
 
 const iconStyles = {
-    marginRight: 24,
+    marginRight: 12,
+    marginLeft: 12
 };
 
 const logoStyles = {
@@ -65,7 +66,7 @@ const Project = React.createClass({
                         <PersonAdd style={iconStyles} color={grey500} onClick={this.open}/>
                         <Key style={iconStyles} color={grey500}/>
                         <FileCloudUpload style={iconStyles} color={grey500}/>
-                        <FileCloudDownload style={iconStyles} color={grey500}/>
+                        <IconDelete style={iconStyles} color={grey500}/>
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
