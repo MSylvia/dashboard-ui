@@ -62,10 +62,10 @@ const Project = React.createClass({
                 <Progressbar />
                 <div className="project-option">
                     <div >
-                        <FileCloudDownload style={iconStyles} color={grey500}/>
-                        <FileCloudUpload style={iconStyles} color={grey500}/>
-                        <Key style={iconStyles} color={grey500}/>
                         <PersonAdd style={iconStyles} color={grey500} onClick={this.open}/>
+                        <Key style={iconStyles} color={grey500}/>
+                        <FileCloudUpload style={iconStyles} color={grey500}/>
+                        <FileCloudDownload style={iconStyles} color={grey500}/>
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
