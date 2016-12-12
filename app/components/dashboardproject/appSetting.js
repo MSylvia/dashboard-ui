@@ -7,17 +7,17 @@ import Upgrade from './upgrade';
 
 import {Tab, Panel, Nav, NavItem, FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
 
-const AppSetting = () => {
+const AppSetting = (props) => {
 
     const handleSubmit = (values) => {
         console.log(values);
     };
 
     return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="addDev">
             <div>
                 <Nav bsStyle="tabs">
-                    <NavItem eventKey="first">
+                    <NavItem eventKey="addDev">
                         Add Developers
                     </NavItem>
                     <NavItem eventKey="second">
@@ -29,7 +29,7 @@ const AppSetting = () => {
                     </NavItem>
                 </Nav>
                 <Tab.Content animation>
-                    <Tab.Pane eventKey="first">
+                    <Tab.Pane eventKey="addDev">
                         <FormGroup>
                             <InputGroup>
                                 <InputGroup.Addon>@</InputGroup.Addon>
@@ -38,7 +38,7 @@ const AppSetting = () => {
                             <Button bsStyle="primary">Invite</Button>
                         </FormGroup>
                         <Clearfix/>
-                        <UserAccess />
+                        <UserAccess {...props}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
                         <FormGroup>

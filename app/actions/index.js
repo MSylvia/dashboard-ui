@@ -4,7 +4,7 @@
 
 import * as api from '../fakeAPI';
 import {xhrDashBoardClient, xhrAccountsClient} from '../xhrClient';
-import {loadState,deleteAllCookies} from '../helper';
+import {loadState, deleteAllCookies} from '../helper';
 import {v4} from 'node-uuid';
 
 export function fetchApps() {
@@ -53,7 +53,6 @@ export const saveAppName = (id, name) => {
 
 export const logOut = () => {
 
-
     return function (dispatch) {
         xhrAccountsClient.post('/user/logout')
             .then(response => {
@@ -66,6 +65,23 @@ export const logOut = () => {
             })
             .catch(error => {
                 console.log('inside Logout catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const fetchDevDetails = (IdArray) => {
+    console.log("fetchDevDetails");
+    return function (dispatch) {
+        xhrAccountsClient.post('user/list', {IdArray: IdArray})
+            .then(response => {
+                dispatch({
+                    type: 'RECEIVE_USERS',
+                    payload: response.data
+                });
+            })
+            .catch(error => {
+                console.log('inside fetchDevDetails catch error: ');
                 console.log(error);
             });
     };

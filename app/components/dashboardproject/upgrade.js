@@ -22,8 +22,7 @@ class Upgrade extends React.Component {
         const {handleSubmit} = this.props;
 
         const handleSelect = (eventKey) => this.setState({plan: planList.plans[eventKey - 1]});
-
-        console.log(JSON.stringify(planList));
+        console.log(planList);
         return (
             <form onSubmit={handleSubmit}>
                 <Row>
