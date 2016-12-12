@@ -75,6 +75,7 @@ const Project = React.createClass({
                             <AppSetting id={this.props._id}
                                         masterKey={this.props.keys.master}
                                         clientKey={this.props.keys.js}
+                                        planId={this.props.planId}
                             />
                         </Modal.Body>
                     </Modal>

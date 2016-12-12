@@ -13,7 +13,7 @@ class Upgrade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            plan: planList.plans[0]
+            plan: planList.plans[parseInt(this.props.planId) - 1]
         };
     }
 

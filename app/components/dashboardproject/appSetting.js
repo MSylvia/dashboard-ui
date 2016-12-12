@@ -67,7 +67,7 @@ const AppSetting = (props) => {
                         <Clearfix/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                        <Upgrade onSubmit={handleSubmit}/>
+                        <Upgrade onSubmit={handleSubmit} planId={props.planId}/>
                     </Tab.Pane>
                 </Tab.Content>
 
