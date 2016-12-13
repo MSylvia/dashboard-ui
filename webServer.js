@@ -1,5 +1,7 @@
 /**
  * Created by Darkstar on 11/30/2016.
+ * This file may be used in future to do server side rendering, right now,
+ * it will just stay here in project as there were many complications for server side rendering
  */
 
 import path from 'path';
