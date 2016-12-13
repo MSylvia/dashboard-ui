@@ -4,5 +4,6 @@
 module.exports = {
     dashboardAPI : 'http://localhost:3000',
     analyticsAPI : '',
-    acountsURL : 'http://localhost:1447'
+    accountsURL : 'http://localhost:1447',
+    accountsAPI : 'http://localhost:3000'
 };

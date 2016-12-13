@@ -41,6 +41,8 @@ export default function (state = [], action) {
             console.log('Inside save app name reducer');
             return state.map(t => app(t, action));
         }
+        case  'LOGOUT':
+            return [];
         default:
             return state;
     }

@@ -13,7 +13,7 @@ class Upgrade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            plan: planList.plans[0]
+            plan: planList.plans[parseInt(this.props.planId) - 1]
         };
     }
 
@@ -22,8 +22,7 @@ class Upgrade extends React.Component {
         const {handleSubmit} = this.props;
 
         const handleSelect = (eventKey) => this.setState({plan: planList.plans[eventKey - 1]});
-
-        console.log(JSON.stringify(planList));
+        console.log(planList);
         return (
             <form onSubmit={handleSubmit}>
                 <Row>
@@ -132,14 +131,6 @@ class Upgrade extends React.Component {
     }
 }
 
-export
-default
-
-reduxForm({
+export default reduxForm({
     form: 'upgrade' // a unique name for this form
-})
-
-(
-    Upgrade
-)
-;
+})(Upgrade);

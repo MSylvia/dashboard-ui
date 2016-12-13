@@ -13,14 +13,14 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import {getCookie, saveState, loadState} from './helper';
 import throttle from 'lodash/throttle';
+import {accountsURL} from './config';
 
 import routesConfig from './routesConfig';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-
 let persistedState = loadState();
-if (persistedState === undefined) {
-    console.log('persistedState not set');
+
+if (typeof persistedState === 'undefined') {
     persistedState = {
         user: {
             isLogggedIn: getCookie('userId') !== null,
@@ -29,12 +29,21 @@ if (persistedState === undefined) {
             email: getCookie('email'),
         }
     };
+    if (persistedState.user.isLogggedIn === false) {
+        localStorage.removeItem('state');
+        window.location = accountsURL;
+    }
 }
 
 const store = createStoreWithMiddleware(reducers, persistedState);
 
 store.subscribe(throttle(() => {
-    saveState(store.getState());
+    let state = store.getState();
+    if (state.user.isLogggedIn === false) {
+        window.location = accountsURL;
+    }
+    else
+        saveState(store.getState());
 }, 1000));
 
 class Routes extends React.Component {

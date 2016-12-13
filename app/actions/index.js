@@ -3,8 +3,8 @@
  */
 
 import * as api from '../fakeAPI';
-import {xhrDashBoardClient} from '../xhrClient';
-import {acountsURL} from '../config';
+import {xhrDashBoardClient, xhrAccountsClient} from '../xhrClient';
+import {loadState, deleteAllCookies} from '../helper';
 import {v4} from 'node-uuid';
 
 export function fetchApps() {
@@ -21,7 +21,9 @@ export function fetchApps() {
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-                //window.location = acountsURL;
+                dispatch({
+                    type: 'LOGOUT'
+                });
             });
 
     };
@@ -46,5 +48,41 @@ export const saveAppName = (id, name) => {
             _id: id,
             name: name
         }
+    };
+};
+
+export const logOut = () => {
+
+    return function (dispatch) {
+        xhrAccountsClient.post('/user/logout')
+            .then(response => {
+                console.log(response);
+                localStorage.removeItem('state');
+                deleteAllCookies();
+                dispatch({
+                    type: 'LOGOUT'
+                });
+            })
+            .catch(error => {
+                console.log('inside Logout catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const fetchDevDetails = (IdArray) => {
+    console.log("fetchDevDetails");
+    return function (dispatch) {
+        xhrAccountsClient.post('user/list', {IdArray: IdArray})
+            .then(response => {
+                dispatch({
+                    type: 'RECEIVE_USERS',
+                    payload: response.data
+                });
+            })
+            .catch(error => {
+                console.log('inside fetchDevDetails catch error: ');
+                console.log(error);
+            });
     };
 };

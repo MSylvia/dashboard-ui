@@ -7,20 +7,20 @@ import Upgrade from './upgrade';
 
 import {Tab, Panel, Nav, NavItem, FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
 
-const AppSetting = () => {
+const AppSetting = (props) => {
 
     const handleSubmit = (values) => {
         console.log(values);
     };
 
     return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+        <Tab.Container id="left-tabs-example" defaultActiveKey="addDev">
             <div>
                 <Nav bsStyle="tabs">
-                    <NavItem eventKey="first">
+                    <NavItem eventKey="addDev">
                         Add Developers
                     </NavItem>
-                    <NavItem eventKey="second">
+                    <NavItem eventKey="keys">
                         App Keys
                     </NavItem>
 
@@ -29,7 +29,7 @@ const AppSetting = () => {
                     </NavItem>
                 </Nav>
                 <Tab.Content animation>
-                    <Tab.Pane eventKey="first">
+                    <Tab.Pane eventKey="addDev">
                         <FormGroup>
                             <InputGroup>
                                 <InputGroup.Addon>@</InputGroup.Addon>
@@ -38,21 +38,21 @@ const AppSetting = () => {
                             <Button bsStyle="primary">Invite</Button>
                         </FormGroup>
                         <Clearfix/>
-                        <UserAccess />
+                        <UserAccess id={props.id}/>
                     </Tab.Pane>
-                    <Tab.Pane eventKey="second">
+                    <Tab.Pane eventKey="keys">
                         <FormGroup>
-                            <label htmlFor="firstName">App ID</label>
+                            <label>App ID</label>
                             <InputGroup>
                                 <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" disabled/>
+                                <FormControl type="text" value={props.id} disabled/>
                             </InputGroup>
                         </FormGroup>
                         <FormGroup>
                             <label htmlFor="firstName">Master Key</label>
                             <InputGroup>
                                 <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" value="test" disabled/>
+                                <FormControl type="text" value={props.masterKey} disabled/>
                                 <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
                             </InputGroup>
                         </FormGroup>
@@ -60,14 +60,14 @@ const AppSetting = () => {
                             <label htmlFor="firstName">Client Key</label>
                             <InputGroup>
                                 <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" disabled/>
+                                <FormControl type="text" value={props.clientKey} disabled/>
                                 <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
                             </InputGroup>
                         </FormGroup>
                         <Clearfix/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                        <Upgrade onSubmit={handleSubmit}/>
+                        <Upgrade onSubmit={handleSubmit} planId={props.planId}/>
                     </Tab.Pane>
                 </Tab.Content>
 

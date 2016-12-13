@@ -6,7 +6,7 @@ export default function (state = {}, action) {
         case  'LOGOUT':
             console.log('Inside Logout reducer');
             console.log({...state, isLogggedIn: false});
-            return {...state, isLogggedIn: false};
+            return {isLogggedIn: false};
 
         default:
             return state;
