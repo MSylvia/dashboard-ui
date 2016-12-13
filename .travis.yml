@@ -13,8 +13,8 @@ node_js:
 before_install:
 - npm install
 install:
-- docker build -t cloudboost/accounts:2.0.$TRAVIS_BUILD_NUMBER .
-- docker build -t cloudboost/dashboard:latest .
+- docker build -t cloudboost/dashboard-ui:2.0.$TRAVIS_BUILD_NUMBER .
+- docker build -t cloudboost/dashboard-ui:latest .
 after_success:
 #Deploy.
 #Docker Login
@@ -40,6 +40,3 @@ after_success:
 - docker push cloudboost/dashboard-ui:latest
 #Upload to Kubernetes for deployment.
 - kubectl rolling-update cloudboost-dashboard-ui --image=cloudboost/dashboard-ui:latest --image-pull-policy=Always
-#Notify Team on Slack
-notifications:
-  slack: cloudboost:gm7nWJDLDtBRyF75VKLKOoMW
