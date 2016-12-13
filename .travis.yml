@@ -18,9 +18,10 @@ install:
 after_success:
 #Deploy.
 #Docker Login
-- openssl aes-256-cbc -K $encrypted_3645f6c1a435_key -iv $encrypted_3645f6c1a435_iv -in credentials.tar.enc -out credentials.tar -d
-- tar -xvf credentials.tar
 - docker login --username $DOCKERUSERNAME --password $DOCKERPASSWORD --email $DOCKEREMAIL
+#Push docker images.
+- docker push cloudboost/dashboard-ui:2.0.$TRAVIS_BUILD_NUMBER
+- docker push cloudboost/dashboard-ui:latest
 # Make sure SDK is downloaded - cache once it's working
 - curl https://sdk.cloud.google.com | bash;
 # List the SDK contents to ensure it's downloaded
@@ -31,12 +32,9 @@ after_success:
 - gcloud --version
 - ls
 #Activate Google Cloud SDK with your project
-- gcloud auth activate-service-account --key-file gc_cred.json
+#- gcloud auth activate-service-account --key-file gc_cred.json
 #Install Kubectl
 - gcloud components install kubectl
 - gcloud container clusters get-credentials $GOOGLECLUSTERNAME --zone $GOOGLEZONE --project $GOOGLEPROJECT
-#Push docker images.
-- docker push cloudboost/dashboard-ui:2.0.$TRAVIS_BUILD_NUMBER
-- docker push cloudboost/dashboard-ui:latest
 #Upload to Kubernetes for deployment.
 - kubectl rolling-update cloudboost-dashboard-ui --image=cloudboost/dashboard-ui:latest --image-pull-policy=Always
