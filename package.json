@@ -4,7 +4,7 @@
   "description": "Dashboard UI for Cloudboost platform",
   "main": "index.html",
   "scripts": {
-    "start": "node server.js"
+    "start": "gulp build && node server.js"
   },
   "repository": {
     "type": "git",
