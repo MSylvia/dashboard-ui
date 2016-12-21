@@ -67,7 +67,7 @@ const Project = React.createClass({
                 <Icon style={logoStyles} color={blue500}> </Icon>
                 <ProjectName
                     name={this.props.name}
-                    id={this.props._id}
+                    appId={this.props.appId}
                 />
                 <Progressbar />
                 <div className="project-option">
@@ -86,7 +86,7 @@ const Project = React.createClass({
                                         masterKey={this.props.keys.master}
                                         clientKey={this.props.keys.js}
                                         planId={this.props.planId}
-                                        selectedTab = {this.state.selectedTab}
+                                        selectedTab={this.state.selectedTab}
                             />
                         </Modal.Body>
                     </Modal>

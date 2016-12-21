@@ -13,7 +13,7 @@ function doesExists(_id, myArray) {
 const app = (state, action) => {
     switch (action.type) {
         case 'SAVE_APP_NAME':
-            if (state._id !== action.id) {
+            if (state.appId !== action.payload.appId) {
                 return state;
             }
             return {...state, name: action.payload.name};

@@ -50,7 +50,7 @@ class ProjectName extends React.Component {
                         <input ref="input" defaultValue={this.props.name} onChange={handleChange}/>
                         <CloseIcon style={iconStyles} color={grey500} onClick={() => {
                             closeEditing();
-                            this.props.onNameChange(this.props.id, this.state.value);
+                            this.props.onNameChange(this.props.appId, this.state.value);
                         }}/>
                     </p>
                 </div>
@@ -62,8 +62,8 @@ class ProjectName extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onNameChange: (id, newName) => {
-            dispatch(saveAppName(id, newName));
+        onNameChange: (appId, newName) => {
+            dispatch(saveAppName(appId, newName));
         },
     };
 };

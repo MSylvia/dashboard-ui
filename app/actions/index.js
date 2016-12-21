@@ -5,7 +5,6 @@
 import * as api from '../fakeAPI';
 import {xhrDashBoardClient, xhrAccountsClient} from '../xhrClient';
 import {loadState, deleteAllCookies} from '../helper';
-import {v4} from 'node-uuid';
 
 export function fetchApps() {
 
@@ -29,7 +28,6 @@ export function fetchApps() {
     };
 }
 
-
 export const addApp = (name) => {
     return function (dispatch) {
         xhrDashBoardClient.post('/app/create', {"name": "test"})
@@ -43,20 +41,27 @@ export const addApp = (name) => {
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-                dispatch({
-                    type: 'LOGOUT'
-                });
             });
     };
 };
 
-export const saveAppName = (id, name) => {
-    return {
-        type: 'SAVE_APP_NAME',
-        payload: {
-            _id: id,
-            name: name
-        }
+export const saveAppName = (appId, name) => {
+
+    return function (dispatch) {
+        xhrDashBoardClient.put('/app/' + appId, {"name": name})
+            .then(response => {
+                dispatch({
+                    type: 'SAVE_APP_NAME',
+                    payload: {
+                        appId: appId,
+                        name: name
+                    }
+                });
+            })
+            .catch(error => {
+                console.log('inside saveAppName error catch error: ');
+                console.log(error);
+            });
     };
 };
 
