@@ -2,8 +2,8 @@
  * Created by Darkstar on 12/4/2016.
  */
 module.exports = {
-    dashboardAPI : 'https://service.cloudboost.io',
+    dashboardAPI : 'http://localhost:3000',
     analyticsAPI : '',
-    accountsURL : 'https://accounts.cloudboost.io',
-    accountsAPI : 'https://service.cloudboost.io'
+    accountsURL : 'http://localhost:1447',
+    accountsAPI : 'http://localhost:3000'
 };

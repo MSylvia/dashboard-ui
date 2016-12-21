@@ -56,8 +56,8 @@ class UserAccess extends Component {
 
 const mapStateToProps = (state, selfProps) => {
     let IdArray = getAppDevs(state, selfProps.id);
-    let newIds = IdArray.filter((id) => (state.userList[id] === 'undefined'));
-    let oldIds = IdArray.filter((id) => (state.userList[id] !== 'undefined'));
+    let newIds = IdArray.filter((id) => (typeof state.userList[id] === 'undefined'));
+    let oldIds = IdArray.filter((id) => (typeof state.userList[id] !== 'undefined'));
     let objUserList = oldIds.map((id) => state.userList[id]);
     return {
         objUserList: objUserList,

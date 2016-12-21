@@ -19,7 +19,7 @@ import routesConfig from './routesConfig';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 let persistedState = loadState();
-
+console.log(process.env);
 if (typeof persistedState === 'undefined') {
     persistedState = {
         user: {
@@ -42,8 +42,8 @@ store.subscribe(throttle(() => {
     if (state.user.isLogggedIn === false) {
         window.location = accountsURL;
     }
-    else
-        saveState(store.getState());
+    //else
+    //    saveState(store.getState());
 }, 1000));
 
 class Routes extends React.Component {
