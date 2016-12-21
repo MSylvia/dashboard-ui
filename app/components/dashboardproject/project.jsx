@@ -28,7 +28,7 @@ const Project = React.createClass({
     getInitialState() {
         return {
             showModal: false,
-            selectedTab: (typeof this.props.selectedTab !== 'undefined') ? this.props.selectedTab : 1
+            selectedTab: (typeof this.props.selectedTab !== 'undefined') ? this.props.selectedTab : "addDev"
         };
     },
 
@@ -40,8 +40,17 @@ const Project = React.createClass({
         this.setState({showModal: false});
     },
 
-    open() {
-        this.setState({showModal: true});
+    open1() {
+        this.setState({showModal: true, selectedTab: "addDev"});
+    },
+    open2() {
+        this.setState({showModal: true, selectedTab: "keys"});
+    },
+    open3() {
+        this.setState({showModal: true, selectedTab: "upgrade"});
+    },
+    delete(){
+        this.setState({showModal: true, selectedTab: "delete"});
     },
 
 
@@ -63,10 +72,10 @@ const Project = React.createClass({
                 <Progressbar />
                 <div className="project-option">
                     <div >
-                        <PersonAdd style={iconStyles} color={grey500} onClick={this.open}/>
-                        <Key style={iconStyles} color={grey500}/>
-                        <FileCloudUpload style={iconStyles} color={grey500}/>
-                        <IconDelete style={iconStyles} color={grey500}/>
+                        <PersonAdd style={iconStyles} color={grey500} onClick={this.open1}/>
+                        <Key style={iconStyles} color={grey500} onClick={this.open2}/>
+                        <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open2}/>
+                        <IconDelete style={iconStyles} color={grey500} onClick={this.delete}/>
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
@@ -77,6 +86,7 @@ const Project = React.createClass({
                                         masterKey={this.props.keys.master}
                                         clientKey={this.props.keys.js}
                                         planId={this.props.planId}
+                                        selectedTab = {this.state.selectedTab}
                             />
                         </Modal.Body>
                     </Modal>

@@ -12,6 +12,7 @@ const iconStyles = {
     marginLeft: 20,
 };
 const getAppDevs = (state, id) => {
+    console.log("getAppDevs "+id);
     for (let i = 0; i < state.apps.length; i++) {
         if (state.apps[i]._id === id) {
             return state.apps[i].developers.map((dev) => dev.userId);
