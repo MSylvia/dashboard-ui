@@ -86,6 +86,7 @@ export const logOut = () => {
 
 export const fetchDevDetails = (IdArray) => {
     console.log("fetchDevDetails");
+    console.log(IdArray);
     return function (dispatch) {
         xhrAccountsClient.post('user/list', {IdArray: IdArray})
             .then(response => {
@@ -96,6 +97,27 @@ export const fetchDevDetails = (IdArray) => {
             })
             .catch(error => {
                 console.log('inside fetchDevDetails catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const sendInvitation = (appId, email) => {
+    console.log("inviting:");
+    console.log(appId+" "+email);
+    return function (dispatch) {
+        xhrDashBoardClient.post('/app/' + appId + '/invite', {"email": email})
+            .then(response => {
+                dispatch({
+                    type: 'SAVE_INVITE',
+                    payload: {
+                        appId: appId,
+                        email: email
+                    }
+                });
+            })
+            .catch(error => {
+                console.log('inside sendInvite error catch error: ');
                 console.log(error);
             });
     };

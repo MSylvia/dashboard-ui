@@ -12,7 +12,7 @@ const iconStyles = {
     marginLeft: 12
 };
 
-import {Tab, Panel, Nav, NavItem, FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
+import {Tab, Nav, NavItem, FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
 
 const AppSetting = (props) => {
 
@@ -40,15 +40,7 @@ const AppSetting = (props) => {
                 </Nav>
                 <Tab.Content animation>
                     <Tab.Pane eventKey="addDev">
-                        <FormGroup>
-                            <InputGroup>
-                                <InputGroup.Addon>@</InputGroup.Addon>
-                                <FormControl type="text" placeholder="example@example.com"/>
-                            </InputGroup>
-                            <Button bsStyle="primary">Invite</Button>
-                        </FormGroup>
-                        <Clearfix/>
-                        <UserAccess id={props.id}/>
+                        <UserAccess id={props.id} appId={props.appId} invited={props.invited}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="keys">
                         <FormGroup>

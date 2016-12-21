@@ -83,9 +83,11 @@ const Project = React.createClass({
                         </Modal.Header>
                         <Modal.Body>
                             <AppSetting id={this.props._id}
+                                        appId={this.props.appId}
                                         masterKey={this.props.keys.master}
                                         clientKey={this.props.keys.js}
                                         planId={this.props.planId}
+                                        invited={this.props.invited}
                                         selectedTab={this.state.selectedTab}
                             />
                         </Modal.Body>

@@ -17,6 +17,11 @@ const app = (state, action) => {
                 return state;
             }
             return {...state, name: action.payload.name};
+        case 'SAVE_INVITE':
+            if (state.appId !== action.payload.appId) {
+                return state;
+            }
+            return {...state, invited: [...state.invited,action.payload]};
         default:
             return state;
     }
@@ -38,6 +43,10 @@ export default function (state = [], action) {
             return [...state, action.payload];
         }
         case 'SAVE_APP_NAME': {
+            console.log('Inside save app name reducer');
+            return state.map(t => app(t, action));
+        }
+        case 'SAVE_INVITE': {
             console.log('Inside save app name reducer');
             return state.map(t => app(t, action));
         }
