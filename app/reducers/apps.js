@@ -29,6 +29,14 @@ const app = (state, action) => {
             if (state.appId !== action.payload.appId)
                 return state;
             return {...state, invited: action.payload.invited};
+        case 'GEN_MASTER':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, keys: {...state.keys, master:action.payload.masterKey}};
+        case 'GEN_CLIENT':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, keys: {...state.keys, js:action.payload.clientKey}};
         default:
             return state;
     }
@@ -58,6 +66,12 @@ export default function (state = [], action) {
             return state.map(t => app(t, action));
         }
         case 'DELETE_INVITE': {
+            return state.map(t => app(t, action));
+        }
+        case 'GEN_MASTER': {
+            return state.map(t => app(t, action));
+        }
+        case 'GEN_CLIENT': {
             return state.map(t => app(t, action));
         }
         case  'LOGOUT':

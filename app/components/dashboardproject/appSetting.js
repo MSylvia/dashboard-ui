@@ -4,6 +4,7 @@
 import React from 'react';
 import UserAccess from './userAccess';
 import Upgrade from './upgrade';
+import Keys from './keys';
 
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import {grey500} from 'material-ui/styles/colors';
@@ -43,30 +44,11 @@ const AppSetting = (props) => {
                         <UserAccess id={props.id} appId={props.appId} invited={props.invited}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="keys">
-                        <FormGroup>
-                            <label>App ID</label>
-                            <InputGroup>
-                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" value={props.id} disabled/>
-                            </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                            <label htmlFor="firstName">Master Key</label>
-                            <InputGroup>
-                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" value={props.masterKey} disabled/>
-                                <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
-                            </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                            <label htmlFor="firstName">Client Key</label>
-                            <InputGroup>
-                                <InputGroup.Addon><strong>COPY</strong></InputGroup.Addon>
-                                <FormControl type="text" value={props.clientKey} disabled/>
-                                <InputGroup.Addon><strong>GENERATE NEW</strong></InputGroup.Addon>
-                            </InputGroup>
-                        </FormGroup>
-                        <Clearfix/>
+                        <Keys id={props.id}
+                              appId={props.appId}
+                              clientKey={props.clientKey}
+                              masterKey={props.masterKey}
+                        />
                     </Tab.Pane>
                     <Tab.Pane eventKey="upgrade">
                         <Upgrade onSubmit={handleSubmit} planId={props.planId}/>

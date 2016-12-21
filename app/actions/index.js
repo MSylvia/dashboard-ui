@@ -154,3 +154,35 @@ export const deleteInvite = (appId, email) => {
             });
     };
 };
+
+export const genMasterKey = (appId) => {
+    return function (dispatch) {
+        xhrDashBoardClient.get('/app/' + appId + '/change/masterkey')
+            .then(response => {
+                dispatch({
+                    type: 'GEN_MASTER',
+                    payload: {appId: appId, masterKey: response.data}
+                });
+            })
+            .catch(error => {
+                console.log('inside genMasterKey action error catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const genClientKey = (appId) => {
+    return function (dispatch) {
+        xhrDashBoardClient.get('/app/' + appId + '/change/clientkey')
+            .then(response => {
+                dispatch({
+                    type: 'GEN_CLIENT',
+                    payload: {appId: appId, clientKey: response.data}
+                });
+            })
+            .catch(error => {
+                console.log('inside genClientKey action error catch error: ');
+                console.log(error);
+            });
+    };
+};
