@@ -31,13 +31,22 @@ export function fetchApps() {
 
 
 export const addApp = (name) => {
-    return {
-        type: 'ADD_APP',
-        payload: {
-            _id: v4(),
-            name: name,
-            planId: 1
-        }
+    return function (dispatch) {
+        xhrDashBoardClient.post('/app/create', {"name": "test"})
+            .then(response => {
+                console.log(response);
+                dispatch({
+                    type: 'ADD_APP',
+                    payload: response.data
+                });
+            })
+            .catch(error => {
+                console.log('inside fetch Apps error catch error: ');
+                console.log(error);
+                dispatch({
+                    type: 'LOGOUT'
+                });
+            });
     };
 };
 
