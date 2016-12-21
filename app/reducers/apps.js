@@ -18,10 +18,17 @@ const app = (state, action) => {
             }
             return {...state, name: action.payload.name};
         case 'SAVE_INVITE':
-            if (state.appId !== action.payload.appId) {
+            if (state.appId !== action.payload.appId)
                 return state;
-            }
-            return {...state, invited: [...state.invited,action.payload]};
+            return {...state, invited: [...state.invited, action.payload]};
+        case 'DELETE_DEV':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, developers: action.payload.developers};
+        case 'DELETE_INVITE':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, invited: action.payload.invited};
         default:
             return state;
     }
@@ -39,15 +46,18 @@ export default function (state = [], action) {
         }
 
         case 'ADD_APP': {
-            console.log('Inside addApp reducer');
             return [...state, action.payload];
         }
         case 'SAVE_APP_NAME': {
-            console.log('Inside save app name reducer');
             return state.map(t => app(t, action));
         }
         case 'SAVE_INVITE': {
-            console.log('Inside save app name reducer');
+            return state.map(t => app(t, action));
+        }
+        case 'DELETE_DEV': {
+            return state.map(t => app(t, action));
+        }
+        case 'DELETE_INVITE': {
             return state.map(t => app(t, action));
         }
         case  'LOGOUT':

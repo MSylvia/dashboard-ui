@@ -104,7 +104,7 @@ export const fetchDevDetails = (IdArray) => {
 
 export const sendInvitation = (appId, email) => {
     console.log("inviting:");
-    console.log(appId+" "+email);
+    console.log(appId + " " + email);
     return function (dispatch) {
         xhrDashBoardClient.post('/app/' + appId + '/invite', {"email": email})
             .then(response => {
@@ -118,6 +118,38 @@ export const sendInvitation = (appId, email) => {
             })
             .catch(error => {
                 console.log('inside sendInvite error catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const deleteDev = (appId, userId) => {
+    return function (dispatch) {
+        xhrDashBoardClient.delete('/app/' + appId + '/removedeveloper/' + userId)
+            .then(response => {
+                dispatch({
+                    type: 'DELETE_DEV',
+                    payload: {appId: appId, invited: response.data.developers}
+                });
+            })
+            .catch(error => {
+                console.log('inside delete dev error catch error: ');
+                console.log(error);
+            });
+    };
+};
+
+export const deleteInvite = (appId, email) => {
+    return function (dispatch) {
+        xhrDashBoardClient.post('/app/' + appId + '/removeinvitee', {email: email})
+            .then(response => {
+                dispatch({
+                    type: 'DELETE_INVITE',
+                    payload: {appId: appId, invited: response.data.invited}
+                });
+            })
+            .catch(error => {
+                console.log('inside delete invite error catch error: ');
                 console.log(error);
             });
     };

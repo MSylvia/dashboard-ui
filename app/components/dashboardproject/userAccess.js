@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import  {Table} from 'react-bootstrap';
 import Close from 'material-ui/svg-icons/navigation/close';
 import {grey500} from 'material-ui/styles/colors';
-import {sendInvitation, fetchDevDetails} from '../../actions/index';
+import {sendInvitation, fetchDevDetails, deleteDev,deleteInvite} from '../../actions/index';
 import {FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
 
 const iconStyles = {
@@ -36,7 +36,8 @@ class UserAccess extends Component {
     }
 
     render() {
-        console.log("inside useraccess:");
+        console.log("inside useraccess props.invited:");
+        console.log(this.props.invited);
 
         const handleChange = (e) => this.setState({email: e.target.value});
         const onSend = () => {
@@ -49,7 +50,8 @@ class UserAccess extends Component {
                 <FormGroup>
                     <InputGroup>
                         <InputGroup.Addon>@</InputGroup.Addon>
-                        <FormControl type="text" placeholder="example@example.com" value={this.state.email} onChange={handleChange}/>
+                        <FormControl type="text" placeholder="example@example.com" value={this.state.email}
+                                     onChange={handleChange}/>
                     </InputGroup>
                     <Button bsStyle="primary"
                             onClick={onSend}>Invite</Button>
@@ -70,7 +72,11 @@ class UserAccess extends Component {
                             <td>{user.email}</td>
                             <td>{user.isAdmin ? "Admin" : "User"}</td>
                             <td>Accepted</td>
-                            <td><Close style={iconStyles} color={grey500}/></td>
+                            <td>
+                                <Close style={iconStyles}
+                                       color={grey500}
+                                       onClick={() => this.props.onDeleteDev(this.props.appId, user._id)}/>
+                            </td>
                         </tr>)
                     }
                     { this.props.invited.map((user) =>
@@ -78,7 +84,8 @@ class UserAccess extends Component {
                             <td>{user.email}</td>
                             <td>--</td>
                             <td>Invited</td>
-                            <td><Close style={iconStyles} color={grey500}/></td>
+                            <td><Close style={iconStyles} color={grey500}
+                                       onClick={() => this.props.onDeleteInvite(this.props.appId, user.email)}/></td>
                         </tr>)
                     }
                     </tbody>
@@ -102,7 +109,9 @@ const mapStateToProps = (state, selfProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         invite: (appId, email) => dispatch(sendInvitation(appId, email)),
-        fetchDevDetails: (IdArray) => dispatch(fetchDevDetails(IdArray))
+        fetchDevDetails: (IdArray) => dispatch(fetchDevDetails(IdArray)),
+        onDeleteDev: (appId, devId) => dispatch(deleteDev(appId, userId)),
+        onDeleteInvite: (appId, email) => dispatch(deleteInvite(appId, email))
     };
 };
 
