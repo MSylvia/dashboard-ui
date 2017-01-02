@@ -204,20 +204,27 @@ ul {
 
   .modal-body {
     background-color: white;
-    .nav-tabs{
-      a{
+    .nav-tabs {
+      a {
         color: #555;
       }
-      a:hover{
+      a:hover {
         background-color: white;
         border: none;
       }
-      .active{
+      .active {
+        background: #f6f7f8;
+        a {
+          background: #f6f7f8;
+        }
         a:hover {
           border: 1px solid #ddd;
           border-bottom-color: transparent;
         }
       }
+    }
+    .tab-content {
+      background: #f6f7f8;
     }
   }
 
