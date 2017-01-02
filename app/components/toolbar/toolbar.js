@@ -9,6 +9,10 @@ import MenuItem from 'material-ui/MenuItem';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import {logOut} from '../../actions';
 
+const toolbartitle = {
+    fontSize: 18
+};
+
 const toolBar = ({onLogoutClick}) => (
     <div style={{backgroundColor: '#FFF'}}>
         <Toolbar className='toolbar' style={{backgroundColor: '#FFF'}}>
@@ -16,8 +20,8 @@ const toolBar = ({onLogoutClick}) => (
                 <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
             </ToolbarGroup>
             <ToolbarGroup>
-                <ToolbarTitle text="Quickstart"/>
-                <ToolbarTitle text="Notifications"/>
+                <ToolbarTitle style={toolbartitle} text="Quickstart"/>
+                <ToolbarTitle style={toolbartitle} text="Notifications"/>
                 <ToolbarSeparator />
                 <IconMenu
                     iconButtonElement={
