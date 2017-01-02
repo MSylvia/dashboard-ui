@@ -62,7 +62,7 @@ const Project = React.createClass({
             planName = "Free Plan";
 
         return (
-            <div className="project">
+            <div className="project" onClick={()=>this.props.onProjectClick(this.props.appId)}>
                 <div className="plan-status">{planName}</div>
                 <Icon style={logoStyles} color={blue500}> </Icon>
                 <ProjectName

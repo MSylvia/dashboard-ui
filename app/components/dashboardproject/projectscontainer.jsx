@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Project from './project.jsx';
-import * as actions from '../../actions';
+import  {manageApp,fetchApps} from '../../actions';
 import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap'
 
@@ -16,7 +16,7 @@ const styles = {
 class Projectscontainer extends React.Component {
 
     componentWillMount() {
-        this.props.fetchApps();
+        this.props.onLoad();
     }
 
     render() {
@@ -28,7 +28,7 @@ class Projectscontainer extends React.Component {
                     <Row className="show-grid">
                         {this.props.apps.map(app =>
                             <Col sm={12} md={6} lg={4} key={app._id}>
-                                <Project key={app._id} {...app} />
+                                <Project key={app._id} {...app} onProjectClick={this.props.onProjectClick}/>
                             </Col>
                         )}
                     </Row>
@@ -48,4 +48,11 @@ const mapStateToProps = (state) => {
         apps: state.apps
     };
 };
-export default connect(mapStateToProps, actions)(Projectscontainer);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onProjectClick: (appId) => dispatch(manageApp(appId)),
+        onLoad: ()=>dispatch(fetchApps())
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Projectscontainer);

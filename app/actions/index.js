@@ -20,9 +20,9 @@ export function fetchApps() {
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-                dispatch({
+               /* dispatch({
                     type: 'LOGOUT'
-                });
+                }); */
             });
 
     };
@@ -200,5 +200,14 @@ export const deleteApp = (appId) => {
                 console.log('inside delete app error catch error: ');
                 console.log(error);
             });
+    };
+};
+
+export const manageApp = (appId) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'MANAGE_APP',
+            payload: {appId: appId}
+        });
     };
 };
