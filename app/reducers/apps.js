@@ -32,11 +32,11 @@ const app = (state, action) => {
         case 'GEN_MASTER':
             if (state.appId !== action.payload.appId)
                 return state;
-            return {...state, keys: {...state.keys, master:action.payload.masterKey}};
+            return {...state, keys: {...state.keys, master: action.payload.masterKey}};
         case 'GEN_CLIENT':
             if (state.appId !== action.payload.appId)
                 return state;
-            return {...state, keys: {...state.keys, js:action.payload.clientKey}};
+            return {...state, keys: {...state.keys, js: action.payload.clientKey}};
         default:
             return state;
     }
@@ -73,6 +73,9 @@ export default function (state = [], action) {
         }
         case 'GEN_CLIENT': {
             return state.map(t => app(t, action));
+        }
+        case 'DELETE_APP': {
+            return state.filter(t => t.appId !== action.payload.appId);
         }
         case  'LOGOUT':
             return [];

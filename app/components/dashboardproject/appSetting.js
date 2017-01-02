@@ -5,15 +5,8 @@ import React from 'react';
 import UserAccess from './userAccess';
 import Upgrade from './upgrade';
 import Keys from './keys';
-
-import IconDelete from 'material-ui/svg-icons/action/delete';
-import {grey500} from 'material-ui/styles/colors';
-const iconStyles = {
-    marginRight: 12,
-    marginLeft: 12
-};
-
-import {Tab, Nav, NavItem, FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
+import DeleteApp from './deleteApp';
+import {Tab, Nav, NavItem} from 'react-bootstrap';
 
 const AppSetting = (props) => {
 
@@ -54,21 +47,7 @@ const AppSetting = (props) => {
                         <Upgrade onSubmit={handleSubmit} planId={props.planId}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="delete">
-                        <p>Are you sure? Deleting a app cannot be undone.
-                            To confirm you wish to delete this project,
-                            please type "DELETE" in the box below,
-                            then click "Delete App":
-                        </p>
-                        <FormGroup>
-                            <InputGroup>
-                                <InputGroup.Addon>
-                                    <IconDelete style={iconStyles} color={grey500}/>
-                                </InputGroup.Addon>
-                                <FormControl type="text"/>
-                            </InputGroup>
-                            <Button bsStyle="danger">Delete App</Button>
-                        </FormGroup>
-                        <Clearfix/>
+                        <DeleteApp appId={props.appId}/>
                     </Tab.Pane>
                 </Tab.Content>
 

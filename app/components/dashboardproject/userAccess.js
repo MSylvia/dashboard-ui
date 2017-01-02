@@ -110,7 +110,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         invite: (appId, email) => dispatch(sendInvitation(appId, email)),
         fetchDevDetails: (IdArray) => dispatch(fetchDevDetails(IdArray)),
-        onDeleteDev: (appId, devId) => dispatch(deleteDev(appId, userId)),
+        onDeleteDev: (appId, userId) => dispatch(deleteDev(appId, userId)),
         onDeleteInvite: (appId, email) => dispatch(deleteInvite(appId, email))
     };
 };

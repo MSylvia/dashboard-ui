@@ -186,3 +186,19 @@ export const genClientKey = (appId) => {
             });
     };
 };
+
+export const deleteApp = (appId) => {
+    return function (dispatch) {
+        xhrDashBoardClient.delete('/app/' + appId)
+            .then(response => {
+                dispatch({
+                    type: 'DELETE_APP',
+                    payload: {appId: appId}
+                });
+            })
+            .catch(error => {
+                console.log('inside delete app error catch error: ');
+                console.log(error);
+            });
+    };
+};
