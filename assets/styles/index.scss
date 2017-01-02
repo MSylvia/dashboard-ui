@@ -204,6 +204,21 @@ ul {
 
   .modal-body {
     background-color: white;
+    .nav-tabs{
+      a{
+        color: #555;
+      }
+      a:hover{
+        background-color: white;
+        border: none;
+      }
+      .active{
+        a:hover {
+          border: 1px solid #ddd;
+          border-bottom-color: transparent;
+        }
+      }
+    }
   }
 
   input, select {
