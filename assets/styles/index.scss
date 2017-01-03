@@ -72,7 +72,7 @@ ul {
   min-height: calc(100% - 120px);
 }
 
-.dashproject {
+.dashproject, .tables {
   margin: 75px 0px 75px 0px;
 
   .project-head {
@@ -367,5 +367,12 @@ ul {
 
       //Price plan stop
     }
+  }
+}
+
+.tables {
+  .search {
+    width: 30%;
+    margin-left: 70%;
   }
 }

@@ -11,6 +11,7 @@ import FileCloudUpload from 'material-ui/svg-icons/file/cloud-upload';
 import Key from 'material-ui/svg-icons/communication/vpn-key';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 import Icon from 'material-ui/svg-icons/file/cloud';
+import ManageApp from 'material-ui/svg-icons/navigation/apps';
 import {grey500, blue500} from 'material-ui/styles/colors';
 
 const iconStyles = {
@@ -62,7 +63,7 @@ const Project = React.createClass({
             planName = "Free Plan";
 
         return (
-            <div className="project" onClick={()=>this.props.onProjectClick(this.props.appId)}>
+            <div className="project">
                 <div className="plan-status">{planName}</div>
                 <Icon style={logoStyles} color={blue500}> </Icon>
                 <ProjectName
@@ -76,6 +77,10 @@ const Project = React.createClass({
                         <Key style={iconStyles} color={grey500} onClick={this.open2}/>
                         <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open2}/>
                         <IconDelete style={iconStyles} color={grey500} onClick={this.delete}/>
+                        <ManageApp style={iconStyles}
+                                   color={grey500}
+                                   onClick={() => this.props.onProjectClick(this.props.appId)}
+                        />
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
