@@ -3,7 +3,7 @@
  */
 
 import * as api from '../fakeAPI';
-import {xhrDashBoardClient, xhrAccountsClient} from '../xhrClient';
+import {xhrDashBoardClient, xhrAccountsClient, xhrCBClient} from '../xhrClient';
 import {loadState, deleteAllCookies} from '../helper';
 
 export function fetchApps() {
@@ -20,9 +20,9 @@ export function fetchApps() {
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
                 console.log(error);
-               /* dispatch({
-                    type: 'LOGOUT'
-                }); */
+                /* dispatch({
+                 type: 'LOGOUT'
+                 }); */
             });
 
     };
@@ -203,11 +203,162 @@ export const deleteApp = (appId) => {
     };
 };
 
-export const manageApp = (appId) => {
+export const manageApp = (appId, masterKey, name) => {
     return function (dispatch) {
         dispatch({
             type: 'MANAGE_APP',
-            payload: {appId: appId}
+            payload: {appId: appId, masterKey: masterKey, name: name}
         });
     };
 };
+
+export function fetchTables(appId, masterKey) {
+
+    console.log('inside fetchTables action creator');
+    console.log(masterKey);
+    return function (dispatch) {
+        xhrCBClient.post('/app/' + appId + '/_getAll', {key: masterKey})
+            .then(response => {
+                console.log(response);
+                if (response.data)
+                    dispatch({
+                        type: 'FETCH_TABLES',
+                        payload: {appId: appId, tables: response.data}
+                    });
+            })
+            .catch(error => {
+                console.log('inside fetch Tables error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export function createTable(appId, masterKey, tableName) {
+    return function (dispatch) {
+        xhrCBClient
+            .put(
+                '/app/' + appId + '/' + tableName,
+                {
+                    key: masterKey,
+                    "data": {
+                        "name": tableName,
+                        "appId": appId,
+                        "_type": "table",
+                        "type": "custom",
+                        "maxCount": 9999,
+                        "columns": [{
+                            "name": "id",
+                            "_type": "column",
+                            "dataType": "Id",
+                            "required": true,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "expires",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "updatedAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "createdAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "ACL",
+                            "_type": "column",
+                            "dataType": "ACL",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }]
+                    }
+                }
+            )
+            .then(response => {
+                if (response.data)
+                    dispatch({
+                        type: 'ADD_TABLE',
+                        payload: {appId: appId, newTable: response.data}
+                    });
+            })
+            .catch(error => {
+                console.log('inside add table error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export function deleteTable(appId, masterKey, tableName) {
+    console.log("inside delete table action creator");
+    return function (dispatch) {
+        xhrCBClient
+            .put(
+                '/app/' + appId + '/' + tableName,
+                {
+                    key: masterKey,
+                    method: "DELETE",
+                    name: tableName
+                }
+            )
+            .then(response => {
+                if (response.data)
+                    dispatch({
+                        type: 'DELETE_TABLE',
+                        payload: {appId: appId, name: tableName}
+                    });
+            })
+            .catch(error => {
+                console.log('inside delete table error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export const setTableSearchFilter = (filter) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'SET_TABLE_FILTER',
+            payload: filter
+        });
+    };
+};
+

@@ -79,7 +79,11 @@ const Project = React.createClass({
                         <IconDelete style={iconStyles} color={grey500} onClick={this.delete}/>
                         <ManageApp style={iconStyles}
                                    color={grey500}
-                                   onClick={() => this.props.onProjectClick(this.props.appId)}
+                                   onClick={() => this.props.onProjectClick(
+                                       this.props.appId,
+                                       this.props.keys.master,
+                                       this.props.name
+                                   )}
                         />
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>

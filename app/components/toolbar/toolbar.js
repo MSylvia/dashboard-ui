@@ -111,7 +111,6 @@ const toolBar = ({onLogoutClick, showOthers}) => (
 );
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {showOthers: state.manageApp.viewActive};
 };
 
