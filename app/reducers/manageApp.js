@@ -5,8 +5,18 @@
 export default function (state = {}, action) {
     switch (action.type) {
         case 'MANAGE_APP': {
-            console.log("inside Manage App reducer");
-            return {viewActive: true, appId: action.payload.appId};
+            return {
+                ...state,
+                viewActive: true,
+                appId: action.payload.appId,
+                masterKey: action.payload.masterKey,
+                name: action.payload.name
+            };
+        }
+        case 'SET_TABLE_FILTER' : {
+            return {
+                ...state, tableFilter: action.payload
+            };
         }
         default:
             return state;

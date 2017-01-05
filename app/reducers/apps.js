@@ -37,6 +37,18 @@ const app = (state, action) => {
             if (state.appId !== action.payload.appId)
                 return state;
             return {...state, keys: {...state.keys, js: action.payload.clientKey}};
+        case 'FETCH_TABLES':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, tables: [...action.payload.tables]};
+        case 'ADD_TABLE':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, tables: [...state.tables, action.payload.newTable]};
+        case 'DELETE_TABLE':
+            if (state.appId !== action.payload.appId)
+                return state;
+            return {...state, tables: state.tables.filter((table) => table.name !== action.payload.name)};
         default:
             return state;
     }
@@ -79,6 +91,15 @@ export default function (state = [], action) {
         }
         case  'LOGOUT':
             return [];
+        case 'FETCH_TABLES': {
+            return state.map(t => app(t, action));
+        }
+        case 'ADD_TABLE': {
+            return state.map(t => app(t, action));
+        }
+        case 'DELETE_TABLE': {
+            return state.map(t => app(t, action));
+        }
         default:
             return state;
     }
