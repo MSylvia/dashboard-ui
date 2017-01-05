@@ -26,18 +26,24 @@ class TableList extends React.Component {
         };
     }
 
-    close = () => this.setState({showModal: false});
+    close() {
+        return this.setState({showModal: false});
+    }
 
-    open = () => this.setState({showModal: true});
+    open() {
+        return this.setState({showModal: true});
+    }
 
-    handleChange = (e) => this.setState({value: e.target.value});
+    handleChange(e) {
+        return this.setState({value: e.target.value});
+    }
 
-    onCreateTable = () => {
+    onCreateTable() {
         this.props.createTable(this.props.activeAppId, this.props.masterKey, this.state.value);
         this.setState({
             showModal: false, value: ''
         });
-    };
+    }
 
     render() {
         return (

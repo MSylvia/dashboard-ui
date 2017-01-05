@@ -5,6 +5,7 @@
 import * as api from '../fakeAPI';
 import {xhrDashBoardClient, xhrAccountsClient, xhrCBClient} from '../xhrClient';
 import {loadState, deleteAllCookies} from '../helper';
+import {browserHistory} from 'react-router';
 
 export function fetchApps() {
 
@@ -209,6 +210,7 @@ export const manageApp = (appId, masterKey, name) => {
             type: 'MANAGE_APP',
             payload: {appId: appId, masterKey: masterKey, name: name}
         });
+        browserHistory.push('/tables');
     };
 };
 

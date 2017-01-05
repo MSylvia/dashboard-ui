@@ -49,7 +49,7 @@ class TableContainer extends React.Component {
         this.props.onLoad(this.props.activeAppId, this.props.masterKey);
     }
 
-    getIcon = (tableType) => {
+    getIcon(tableType) {
         switch (tableType) {
             case 'role':
                 return <RoleIcon style={iconStyles} color={grey500}/>;
@@ -60,7 +60,7 @@ class TableContainer extends React.Component {
             default:
                 return <TableIcon style={iconStyles} color={grey500}/>;
         }
-    };
+    }
 
     render() {
         return (
