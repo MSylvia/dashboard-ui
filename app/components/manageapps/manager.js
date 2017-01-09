@@ -64,39 +64,41 @@ const Manager = ({tables, onEditTable}) => {
             <Table>
                 <thead>
                 <tr>
-                    <td>
-                        <Toolbar className='toolbar manageAppToolbar' style={{backgroundColor: '#FFF'}}>
-                            <ToolbarGroup>
-                                <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
+                    <td id="nav-dash" style={{backgroundColor: '#FFF'}}>
+                        <div className="container">
+                            <Toolbar className='toolbar manageAppToolbar' style={{backgroundColor: '#FFF'}}>
+                                <ToolbarGroup>
+                                    <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
 
-                            </ToolbarGroup>
-                            <ToolbarGroup>
-                                <IconMenu iconButtonElement={
-                                    <IconButton touch={true}>
-                                        <LiveHelp style={iconStyles} color={grey500}/>
-                                    </IconButton>
-                                }/>
-                                <IconMenu iconButtonElement={
-                                    <IconButton touch={true}>
-                                        <Documentation style={iconStyles} color={grey500}/>
-                                    </IconButton>
-                                }/>
-                                <ToolbarSeparator />
-                                <IconMenu
-                                    iconButtonElement={
+                                </ToolbarGroup>
+                                <ToolbarGroup>
+                                    <IconMenu iconButtonElement={
                                         <IconButton touch={true}>
-                                            <img className="userhead"
-                                                 src="/.build/images/user-default-image.jpg"
-                                                 alt=""/>
+                                            <LiveHelp style={iconStyles} color={grey500}/>
                                         </IconButton>
-                                    }
-                                >
-                                    <MenuItem primaryText="My Profile"/>
-                                    <MenuItem primaryText="Billing"/>
-                                    <MenuItem primaryText="Logout" onClick={() => this.props.onLogoutClick()}/>
-                                </IconMenu>
-                            </ToolbarGroup>
-                        </Toolbar>
+                                    }/>
+                                    <IconMenu iconButtonElement={
+                                        <IconButton touch={true}>
+                                            <Documentation style={iconStyles} color={grey500}/>
+                                        </IconButton>
+                                    }/>
+                                    <ToolbarSeparator />
+                                    <IconMenu
+                                        iconButtonElement={
+                                            <IconButton touch={true}>
+                                                <img className="userhead"
+                                                     src="/.build/images/user-default-image.jpg"
+                                                     alt=""/>
+                                            </IconButton>
+                                        }
+                                    >
+                                        <MenuItem primaryText="My Profile"/>
+                                        <MenuItem primaryText="Billing"/>
+                                        <MenuItem primaryText="Logout" onClick={() => this.props.onLogoutClick()}/>
+                                    </IconMenu>
+                                </ToolbarGroup>
+                            </Toolbar>
+                        </div>
                     </td>
                 </tr>
                 </thead>
@@ -201,7 +203,7 @@ const mapDispatchToProps = (dispatch) => {
         onLogoutClick: () => {
             dispatch(logOut());
         },
-        onEditTable: (tableId) =>dispatch(editTable(tableId))
+        onEditTable: (tableId) => dispatch(editTable(tableId))
     };
 };
 

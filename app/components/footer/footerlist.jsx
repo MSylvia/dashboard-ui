@@ -5,13 +5,13 @@ import React from 'react';
 const Footerlist = React.createClass({
     render: function() {
         return (
-            <ul className="inlinelist">
-                <li>© Cloudboost</li>
-                <li>Terms</li>
-                <li>Privacy</li>
-                <li>Help</li>
-                <li>Feedback</li>
-            </ul>
+            <span >
+                <a className="link">© Cloudboost</a>
+                <a className="link">Terms</a>
+                <a className="link">Privacy</a>
+                <a className="link">Help</a>
+                <a className="link">Feedback</a>
+            </span>
         );
     }
 });

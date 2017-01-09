@@ -6,9 +6,9 @@ import Footerlist from './footerlist.jsx';
 const Footer = React.createClass({
     render: function() {
         return (
-            <div className="footer">
+            <div className="footer navbar-fixed-bottom">
                 <div className="container">
-                    <Footerlist />
+                    <Footerlist/>
                 </div>
             </div>
         );

@@ -27,86 +27,88 @@ const iconStyles = {
 };
 
 const toolBar = ({onLogoutClick, showOthers}) => (
-    <div style={{backgroundColor: '#FFF'}}>
-        <Toolbar className='toolbar' style={{backgroundColor: '#FFF'}}>
-            <ToolbarGroup>
-                <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
+    <div id= "nav-dash" style={{backgroundColor: '#FFF'}}>
+        <div className="container">
+            <Toolbar className='toolbar' style={{backgroundColor: '#FFF'}}>
+                <ToolbarGroup>
+                    <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
 
-            </ToolbarGroup>
-            {
-                showOthers ? (
-                    <ToolbarGroup>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Storage style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Analytics style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Setting style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Cache style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Queues style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Notifications style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <IconMenu iconButtonElement={
-                            <IconButton touch={true}>
-                                <Email style={iconStyles} color={grey500}/>
-                            </IconButton>
-                        }/>
-                        <ToolbarSeparator />
-                        <ToolbarTitle style={toolbartitle} text=""/>
-                        <ToolbarTitle style={toolbartitle} text="Quickstart"/>
-                        <ToolbarTitle style={toolbartitle} text="Notifications"/>
-                        <ToolbarSeparator />
-                        <IconMenu
-                            iconButtonElement={
-                                <IconButton touch={true}>
-                                    <img className="userhead"
-                                         src="/.build/images/user-default-image.jpg"
-                                         alt=""/>
-                                </IconButton>
-                            }
-                        >
-                            <MenuItem primaryText="My Profile"/>
-                            <MenuItem primaryText="Billing"/>
-                            <MenuItem primaryText="Logout" onClick={() => onLogoutClick()}/>
-                        </IconMenu>
-                    </ToolbarGroup>) : <ToolbarGroup><ToolbarTitle style={toolbartitle} text="Quickstart"/>
-                    <ToolbarTitle style={toolbartitle} text="Notifications"/>
-                    <ToolbarSeparator />
-                    <IconMenu
-                        iconButtonElement={
-                            <IconButton touch={true}>
-                                <img className="userhead"
-                                     src="/.build/images/user-default-image.jpg"
-                                     alt=""/>
-                            </IconButton>
-                        }
-                    >
-                        <MenuItem primaryText="My Profile"/>
-                        <MenuItem primaryText="Billing"/>
-                        <MenuItem primaryText="Logout" onClick={() => onLogoutClick()}/>
-                    </IconMenu></ToolbarGroup>
-            }
-        </Toolbar>
+                </ToolbarGroup>
+                {
+                    showOthers ? (
+                            <ToolbarGroup>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Storage style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Analytics style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Setting style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Cache style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Queues style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Notifications style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <IconMenu iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <Email style={iconStyles} color={grey500}/>
+                                    </IconButton>
+                                }/>
+                                <ToolbarSeparator />
+                                <ToolbarTitle style={toolbartitle} text=""/>
+                                <ToolbarTitle style={toolbartitle} text="Quickstart"/>
+                                <ToolbarTitle style={toolbartitle} text="Notifications"/>
+                                <ToolbarSeparator />
+                                <IconMenu
+                                    iconButtonElement={
+                                        <IconButton touch={true}>
+                                            <img className="userhead"
+                                                 src="/.build/images/user-default-image.jpg"
+                                                 alt=""/>
+                                        </IconButton>
+                                    }
+                                >
+                                    <MenuItem primaryText="My Profile"/>
+                                    <MenuItem primaryText="Billing"/>
+                                    <MenuItem primaryText="Logout" onClick={() => onLogoutClick()}/>
+                                </IconMenu>
+                            </ToolbarGroup>) : <ToolbarGroup><ToolbarTitle style={toolbartitle} text="Quickstart"/>
+                            <ToolbarTitle style={toolbartitle} text="Notifications"/>
+                            <ToolbarSeparator />
+                            <IconMenu
+                                iconButtonElement={
+                                    <IconButton touch={true}>
+                                        <img className="userhead"
+                                             src="/.build/images/user-default-image.jpg"
+                                             alt=""/>
+                                    </IconButton>
+                                }
+                            >
+                                <MenuItem primaryText="My Profile"/>
+                                <MenuItem primaryText="Billing"/>
+                                <MenuItem primaryText="Logout" onClick={() => onLogoutClick()}/>
+                            </IconMenu></ToolbarGroup>
+                }
+            </Toolbar>
+        </div>
     </div>
 );
 

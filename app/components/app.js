@@ -12,7 +12,7 @@ import Dashboardproject from './dashboardproject/dashboardproject.jsx';
 const App = ({showOthers}) => (
     <div>
         <Toolbar />
-        <Dashboardproject id="app-dashproject" className="app-dashproject"/>}
+        <Dashboardproject id="app-dashproject" className="app-dashproject"/>
         <Footer id="app-footer"/>
     </div>
 );
