@@ -26,6 +26,12 @@ export default function (state = {}, action) {
             console.log(action.payload.rows);
             return {...state, rows: action.payload.rows};
         }
+        case 'ADD_APP' : {
+            return {...state, newAppCreated: true};
+        }
+        case 'ADD_APP_COMPLETE' : {
+            return {...state, newAppCreated: false};
+        }
 
         default:
             return state;

@@ -31,7 +31,7 @@ export function fetchApps() {
 
 export const addApp = (name) => {
     return function (dispatch) {
-        xhrDashBoardClient.post('/app/create', {"name": "test"})
+        xhrDashBoardClient.post('/app/create', {"name": name})
             .then(response => {
                 console.log(response);
                 dispatch({
@@ -316,6 +316,426 @@ export function createTable(appId, masterKey, tableName) {
                     dispatch({
                         type: 'ADD_TABLE',
                         payload: {appId: appId, newTable: response.data}
+                    });
+            })
+            .catch(error => {
+                console.log('inside add table error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export function createRoleTable(appId, masterKey) {
+    return function (dispatch) {
+        xhrCBClient
+            .put(
+                '/app/' + appId + '/Role',
+                {
+                    "key": masterKey,
+                    "data": {
+                        "name": "Role",
+                        "appId": appId,
+                        "_type": "table",
+                        "type": "role",
+                        "maxCount": 1,
+                        "columns": [
+                            {
+                                "name": "id",
+                                "_type": "column",
+                                "dataType": "Id",
+                                "required": true,
+                                "unique": true,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            },
+                            {
+                                "name": "expires",
+                                "_type": "column",
+                                "dataType": "DateTime",
+                                "required": false,
+                                "unique": false,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            },
+                            {
+                                "name": "updatedAt",
+                                "_type": "column",
+                                "dataType": "DateTime",
+                                "required": true,
+                                "unique": false,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            },
+                            {
+                                "name": "createdAt",
+                                "_type": "column",
+                                "dataType": "DateTime",
+                                "required": true,
+                                "unique": false,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            },
+                            {
+                                "name": "ACL",
+                                "_type": "column",
+                                "dataType": "ACL",
+                                "required": true,
+                                "unique": false,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            },
+                            {
+                                "name": "name",
+                                "_type": "column",
+                                "dataType": "Text",
+                                "required": true,
+                                "unique": true,
+                                "relatedTo": null,
+                                "relationType": null,
+                                "isDeletable": false,
+                                "isEditable": false,
+                                "isRenamable": false,
+                                "editableByMasterKey": false
+                            }
+                        ]
+                    }
+                }
+            )
+            .then(response => {
+                if (response.data)
+                    dispatch(createUserTable(appId, masterKey));
+            })
+            .catch(error => {
+                console.log('inside add table error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export function createUserTable(appId, masterKey) {
+    return function (dispatch) {
+        xhrCBClient
+            .put(
+                '/app/' + appId + '/User',
+                {
+                    "key": masterKey,
+                    "data": {
+                        "name": "User",
+                        "appId": appId,
+                        "_type": "table",
+                        "type": "user",
+                        "maxCount": 1,
+                        "columns": [{
+                            "name": "id",
+                            "_type": "column",
+                            "dataType": "Id",
+                            "required": true,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "expires",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "updatedAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "createdAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "ACL",
+                            "_type": "column",
+                            "dataType": "ACL",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "username",
+                            "_type": "column",
+                            "dataType": "Text",
+                            "required": false,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "roles",
+                            "_type": "column",
+                            "dataType": "List",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": "Role",
+                            "relationType": "table",
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "password",
+                            "_type": "column",
+                            "dataType": "EncryptedText",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "email",
+                            "_type": "column",
+                            "dataType": "Email",
+                            "required": false,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "socialAuth",
+                            "_type": "column",
+                            "dataType": "List",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": "Object",
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "verified",
+                            "_type": "column",
+                            "dataType": "Boolean",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }]
+                    }
+                }
+            )
+            .then(response => {
+                if (response.data)
+                    dispatch(createDeviceTable(appId, masterKey));
+            })
+            .catch(error => {
+                console.log('inside add table error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+
+export function createDeviceTable(appId, masterKey) {
+    return function (dispatch) {
+        xhrCBClient
+            .put(
+                '/app/' + appId + '/Device',
+                {
+                    "key": masterKey,
+                    "data": {
+                        "name": "Device",
+                        "appId": "glmiizntsjrh",
+                        "_type": "table",
+                        "type": "device",
+                        "maxCount": 1,
+                        "columns": [{
+                            "name": "id",
+                            "_type": "column",
+                            "dataType": "Id",
+                            "required": true,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "expires",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "updatedAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "createdAt",
+                            "_type": "column",
+                            "dataType": "DateTime",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "ACL",
+                            "_type": "column",
+                            "dataType": "ACL",
+                            "required": true,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "channels",
+                            "_type": "column",
+                            "dataType": "List",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": "Text",
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "deviceToken",
+                            "_type": "column",
+                            "dataType": "Text",
+                            "required": false,
+                            "unique": true,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "deviceOS",
+                            "_type": "column",
+                            "dataType": "Text",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "timezone",
+                            "_type": "column",
+                            "dataType": "Text",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }, {
+                            "name": "metadata",
+                            "_type": "column",
+                            "dataType": "Object",
+                            "required": false,
+                            "unique": false,
+                            "relatedTo": null,
+                            "relationType": null,
+                            "isDeletable": false,
+                            "isEditable": false,
+                            "isRenamable": false,
+                            "editableByMasterKey": false
+                        }]
+                    }
+                }
+            )
+            .then(response => {
+                if (response.data)
+                    dispatch({
+                        type: 'ADD_APP_COMPLETE'
                     });
             })
             .catch(error => {
