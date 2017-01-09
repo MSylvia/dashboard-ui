@@ -29,7 +29,7 @@ const iconStyles = {
 const toolBar = ({onLogoutClick, showOthers}) => (
     <div style={{backgroundColor: '#FFF'}}>
         <Toolbar className='toolbar' style={{backgroundColor: '#FFF'}}>
-            <ToolbarGroup firstChild={true}>
+            <ToolbarGroup>
                 <img className="icon" src="/.build/images/cblogo.png" alt="cloud"/>
 
             </ToolbarGroup>

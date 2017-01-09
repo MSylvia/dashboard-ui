@@ -14,10 +14,19 @@ export default function (state = {}, action) {
             };
         }
         case 'SET_TABLE_FILTER' : {
-            return {
-                ...state, tableFilter: action.payload
-            };
+            return {...state, tableFilter: action.payload};
         }
+        case 'TABLE_EDIT' : {
+            return {...state, editTableId: action.payload.tableId};
+        }
+        case 'FETCH_COUNT' : {
+            return {...state, rowCount: action.payload.rowCount};
+        }
+        case 'FETCH_ROWS' : {
+            console.log(action.payload.rows);
+            return {...state, rows: action.payload.rows};
+        }
+
         default:
             return state;
     }

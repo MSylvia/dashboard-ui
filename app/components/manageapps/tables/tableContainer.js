@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import  {fetchTables, deleteTable} from '../../../actions';
+import  {fetchTables, deleteTable, editTableNavigate} from '../../../actions';
 import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import PowerOn from 'material-ui/svg-icons/action/power-settings-new';
@@ -76,11 +76,13 @@ class TableContainer extends React.Component {
                                         {
                                             (table.type !== 'custom') ?
                                                 (<div className="overlay">
-                                                    <PowerOn style={iconStyles3} color={grey50}/>
+                                                    <PowerOn style={iconStyles3} color={grey50}
+                                                             onClick={() => this.props.onEditTable(table.id)}/>
                                                 </div>)
                                                 :
                                                 (<div className="overlay">
-                                                    <PowerOn style={iconStyles2} color={grey50}/>
+                                                    <PowerOn style={iconStyles2} color={grey50}
+                                                             onClick={() => this.props.onEditTable(table.id)}/>
                                                     <div className="bordertop"></div>
                                                     <IconDelete style={iconStyles2}
                                                                 color={grey50}
@@ -115,7 +117,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: (appId, masterKey) => dispatch(fetchTables(appId, masterKey)),
-        deleteTable: (activeAppId, masterKey, name) => dispatch(deleteTable(activeAppId, masterKey, name))
+        deleteTable: (activeAppId, masterKey, name) => dispatch(deleteTable(activeAppId, masterKey, name)),
+        onEditTable: (tableId) => dispatch(editTableNavigate(tableId))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TableContainer);

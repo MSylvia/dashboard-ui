@@ -216,8 +216,6 @@ export const manageApp = (appId, masterKey, name) => {
 
 export function fetchTables(appId, masterKey) {
 
-    console.log('inside fetchTables action creator');
-    console.log(masterKey);
     return function (dispatch) {
         xhrCBClient.post('/app/' + appId + '/_getAll', {key: masterKey})
             .then(response => {
@@ -364,3 +362,79 @@ export const setTableSearchFilter = (filter) => {
     };
 };
 
+export const editTableNavigate = (tableId) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'TABLE_EDIT',
+            payload: {tableId: tableId}
+        });
+
+        browserHistory.push('/appmanager');
+    };
+};
+
+export const editTable = (tableId) => {
+    return function (dispatch) {
+        dispatch({
+            type: 'TABLE_EDIT',
+            payload: {tableId: tableId}
+        });
+    };
+};
+
+export function fetchCount(appId, tableName, masterKey) {
+
+    return function (dispatch) {
+        xhrCBClient
+            .post('/data/' + appId + '/' + tableName + '/count',
+                {
+                    "query": {"$include": [], "$includeList": []},
+                    "limit": 9999,
+                    "skip": 0,
+                    "key": masterKey
+                })
+            .then(response => {
+                if (response.data !== 0) {
+                    dispatch({
+                        type: 'FETCH_COUNT',
+                        payload: {rowCount: response.data}
+                    });
+
+                    dispatch(fetchRows(appId, tableName, masterKey));
+                }
+            })
+            .catch(error => {
+                console.log('inside fetch Rows error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
+export function fetchRows(appId, tableName, masterKey) {
+
+    return function (dispatch) {
+        xhrCBClient
+            .post('/data/' + appId + '/' + tableName + '/find',
+                {
+                    "query": {"$include": [], "$includeList": []},
+                    "select": {},
+                    "sort": {"createdAt": -1},
+                    "limit": 50,
+                    "skip": 0,
+                    "key": masterKey
+                }
+            )
+            .then(response => {
+                if (response.data.length > 0)
+                    dispatch({
+                        type: 'FETCH_ROWS',
+                        payload: {rows: response.data}
+                    });
+            })
+            .catch(error => {
+                console.log('inside fetch Rows error catch error: ');
+                console.log(error);
+            });
+
+    };
+}
