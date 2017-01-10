@@ -43,16 +43,16 @@ const Project = React.createClass({
     },
 
     open1() {
-        this.setState({showModal: true, selectedTab: "addDev"});
+        this.setState({showModal: true, selectedTab: "addDev", displayText: "Add Developers"});
     },
     open2() {
-        this.setState({showModal: true, selectedTab: "keys"});
+        this.setState({showModal: true, selectedTab: "keys", displayText: "App Keys"});
     },
     open3() {
-        this.setState({showModal: true, selectedTab: "upgrade"});
+        this.setState({showModal: true, selectedTab: "upgrade", displayText: "Upgrade Plan"});
     },
     delete(){
-        this.setState({showModal: true, selectedTab: "delete"});
+        this.setState({showModal: true, selectedTab: "delete", displayText: "Delete App"});
     },
 
 
@@ -80,7 +80,7 @@ const Project = React.createClass({
                     <div >
                         <PersonAdd style={iconStyles} color={grey500} onClick={this.open1}/>
                         <Key style={iconStyles} color={grey500} onClick={this.open2}/>
-                        <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open2}/>
+                        <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open3}/>
                         <IconDelete style={iconStyles} color={grey500} onClick={this.delete}/>
                         <ManageApp style={iconStyles}
                                    color={grey500}
@@ -93,7 +93,7 @@ const Project = React.createClass({
                     </div>
                     <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
-                            <Modal.Title>Settings</Modal.Title>
+                            <Modal.Title>{ this.state.displayText}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <AppSetting id={this.props._id}

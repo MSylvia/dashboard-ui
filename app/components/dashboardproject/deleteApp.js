@@ -33,7 +33,7 @@ class DeleteApp extends React.Component {
         };
 
         return (
-            <div>
+            <div  className="tab-content">
                 <p>Are you sure? Deleting an app cannot be undone.
                     To confirm you wish to delete this project,
                     please type "DELETE" in the box below,

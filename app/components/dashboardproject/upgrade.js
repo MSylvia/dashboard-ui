@@ -24,7 +24,7 @@ class Upgrade extends React.Component {
         const handleSelect = (eventKey) => this.setState({plan: planList.plans[eventKey - 1]});
         console.log(planList);
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="tab-content">
                 <Row>
                     <Col md={6}>
                         <Row>

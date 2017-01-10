@@ -13,7 +13,7 @@ import {FormGroup, InputGroup, FormControl, Clearfix} from 'react-bootstrap';
 class Keys extends React.Component {
     render() {
         return (
-            <div>
+            <div className="tab-content">
                 <FormGroup>
                     <label>App ID</label>
                     <InputGroup>
