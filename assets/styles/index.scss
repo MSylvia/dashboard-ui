@@ -120,6 +120,7 @@ body {
         box-sizing: border-box;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
         transition: box-shadow 140ms linear;
+
         .plan-status {
           position: absolute;
           top: 10px;
@@ -135,36 +136,62 @@ body {
         .plan-status:hover {
           opacity: 1;
         }
-        img {
-          height: 60px;
-          width: 60px;
-          border-radius: 50%;
-          .project-icon {
-            vertical-align: middle;
+        .app-info {
+          position: relative;
+          text-align: center;
+          padding: 25px 0;
+
+          .app-icon {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -35px;
+            margin-top: -25px;
+            height: 70px;
+            width: 70px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
           }
-        }
-        p {
-          font-size: 1.2em;
-          margin: 15px 0;
-          color: #8b919a;
-        }
-        .progress_bar {
-          margin-bottom: 20px;
-          padding: 0 17%;
+
+          h3 {
+            margin: 0;
+            padding: 35px 0 10px 0;
+            font-size: 20px;
+            font-weight: normal;
+
+            input{
+              text-align: center;
+            }
+          }
+
           p {
-            margin: 10px 0;
-            font-size: .85em;
-            text-align: left;
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #8b919a;
           }
-        }
-        .apihead, .storagehead {
-          height: 5px;
-          margin: auto;
-          background-color: #EEEEEE;
-        }
-        .api_bar, .storage_bar {
-          height: 100%;
-          background-color: #4E88FF;
+
+          .progress_bar {
+            padding: 0 17%;
+            p {
+              margin: 10px 0;
+              font-size: .85em;
+              text-align: left;
+            }
+          }
+
+          .apihead, .storagehead {
+            height: 5px;
+            margin: auto;
+            background-color: #EEEEEE;
+          }
+
+          .api_bar, .storage_bar {
+            height: 100%;
+            background-color: #4E88FF;
+          }
+
         }
         .project-option {
           border-top: 1px solid #e8ebef;

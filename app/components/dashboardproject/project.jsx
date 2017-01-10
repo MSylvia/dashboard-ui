@@ -20,8 +20,9 @@ const iconStyles = {
 };
 
 const logoStyles = {
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 50,
+    marginTop: 8,
 };
 
 const Project = React.createClass({
@@ -65,12 +66,16 @@ const Project = React.createClass({
         return (
             <div className="project">
                 <div className="plan-status">{planName}</div>
-                <Icon style={logoStyles} color={blue500}> </Icon>
-                <ProjectName
-                    name={this.props.name}
-                    appId={this.props.appId}
-                />
-                <Progressbar />
+                <div className="app-info">
+                    <div className="app-icon">
+                        <Icon style={logoStyles} color={blue500}> </Icon>
+                    </div>
+                    <ProjectName
+                        name={this.props.name}
+                        appId={this.props.appId}
+                    />
+                    <Progressbar />
+                </div>
                 <div className="project-option">
                     <div >
                         <PersonAdd style={iconStyles} color={grey500} onClick={this.open1}/>
