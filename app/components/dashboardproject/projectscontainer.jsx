@@ -9,7 +9,7 @@ import {Grid, Row, Col} from 'react-bootstrap'
 const styles = {
     root: {
         display: 'flex',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
     }
 };
 
@@ -27,7 +27,7 @@ class Projectscontainer extends React.Component {
                 <Grid className="projects-container">
                     <Row className="show-grid">
                         {this.props.apps.map(app =>
-                            <Col sm={12} md={6} lg={4} key={app._id}>
+                            <Col xs={8} sm={6} md={4} lg={4} key={app._id} className="project-grid">
                                 <Project key={app._id} {...app}
                                          onProjectClick={this.props.onProjectClick}/>
                             </Col>
