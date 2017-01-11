@@ -27,7 +27,7 @@ const AppSetting = (props) => {
                 /> : <div></div>
             }
             { (props.selectedTab === 'upgrade') ?
-                <Upgrade onSubmit={handleSubmit} planId={props.planId}/> : <div></div>
+                <Upgrade onSubmit={handleSubmit} planId={props.planId} id={props.id} appId={props.appId}/> : <div></div>
             }
             {  (props.selectedTab === 'delete') ?
                 <DeleteApp appId={props.appId}/> : <div></div>

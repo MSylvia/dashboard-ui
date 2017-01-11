@@ -91,7 +91,7 @@ const Project = React.createClass({
                                    )}
                         />
                     </div>
-                    <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
+                    <Modal show={this.state.showModal} bsSize={ (this.state.selectedTab === 'upgrade')?'large': null} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
                             <Modal.Title>{ this.state.displayText}</Modal.Title>
                         </Modal.Header>

@@ -2,135 +2,243 @@
  * Created by Darkstar on 12/5/2016.
  */
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 import {Row, Col, Clearfix, NavDropdown, MenuItem} from 'react-bootstrap';
 import Check from 'material-ui/svg-icons/navigation/check';
-import {FormControl, InputGroup, FormGroup, ControlLabel} from 'react-bootstrap';
+import {FormControl, InputGroup, FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import CreditCard from 'material-ui/svg-icons/action/credit-card';
 import {grey500} from 'material-ui/styles/colors';
 import planList from '../../fakeAPI/plans';
+import {createSale} from '../../actions';
+
 class Upgrade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            plan: planList.plans[parseInt(this.props.planId) - 1]
+            plan: planList.plans[parseInt(this.props.planId) - 1],
+            cardDetails: {},
+            upgradeClicked: false
         };
     }
 
     render() {
 
-        const {handleSubmit} = this.props;
+        const handleSelect = (eventKey) => this.setState({
+            plan: planList.plans[eventKey - 1]
+        });
 
-        const handleSelect = (eventKey) => this.setState({plan: planList.plans[eventKey - 1]});
-        console.log(planList);
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            console.log(this.state);
+            this.state.upgradeClicked ? this.props.purchase(this.props.appId, this.state.cardDetails, this.state.plan.id) : this.setState({upgradeClicked: true});
+        };
+
+        const handleGoBack = (event) => {
+            event.preventDefault();
+            this.setState({upgradeClicked: false});
+        };
+
+        const handleChange = (e) => {
+            switch (e.target.name) {
+                case 'year' :
+                    this.setState({cardDetails: {...this.state.cardDetails, year: e.target.value}});
+                    break;
+                case 'month' :
+                    this.setState({cardDetails: {...this.state.cardDetails, month: e.target.value}});
+                    break;
+                case 'cvc' :
+                    this.setState({cardDetails: {...this.state.cardDetails, cvc: e.target.value}});
+                    break;
+                case 'ccno' :
+                    this.setState({cardDetails: {...this.state.cardDetails, ccNo: e.target.value}});
+                    break;
+                case 'addrLine1' :
+                    this.setState({
+                        cardDetails: {
+                            ...this.state.cardDetails,
+                            billing: {...this.state.billing, addrLine1: e.target.value}
+                        }
+                    });
+                    break;
+                case 'addrLine2' :
+                    this.setState({
+                        cardDetails: {
+                            ...this.state.cardDetails,
+                            billing: {...this.state.billing, addrLine2: e.target.value}
+                        }
+                    });
+                    break;
+                case 'city' :
+                    this.setState({
+                        cardDetails: {
+                            ...this.state.cardDetails,
+                            billing: {...this.state.billing, city: e.target.value}
+                        }
+                    });
+                    break;
+                case 'country' :
+                    this.setState({
+                        cardDetails: {
+                            ...this.state.cardDetails,
+                            billing: {...this.state.billing, country: e.target.value}
+                        }
+                    });
+                    break;
+                case 'name' :
+                    this.setState({billingAddr: {...this.state.billingAddr, name: e.target.value}});
+                    break;
+                case 'state' :
+                    this.setState({billingAddr: {...this.state.billingAddr, state: e.target.value}});
+                    break;
+                case 'zipCode' :
+                    this.setState({billingAddr: {...this.state.billingAddr, zipCode: e.target.value}});
+                    break;
+            }
+        };
+
+        const renderCardDetail = () => <div>
+
+            <div style={{height: 40}}>
+                100% money back guarantee for the first 30 days on paid plans.
+            </div>
+            < Row>
+                < Col xs={8}>
+                    < FormGroup >
+                        < ControlLabel > Card number</ControlLabel>
+                        <InputGroup>
+                            <InputGroup.Addon><CreditCard color={grey500}/></InputGroup.Addon>
+                            <FormControl type="text" name="ccno" placeholder="•••• •••• •••• ••••"
+                                         onChange={handleChange}/>
+                        </InputGroup>
+                    </FormGroup>
+                </Col>
+                <Col xs={4}>
+                    <FormGroup>
+                        <ControlLabel>Security Code</ControlLabel>
+                        <FormControl type="text" placeholder="123" name="cvc"
+                                     onChange={handleChange}/>
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={8}>
+                    <FormGroup>
+                        <ControlLabel>Name on Card</ControlLabel>
+                        <FormControl type="text" name="name" placeholder="Firstname Lastname"
+                                     onChange={handleChange}/>
+                    </FormGroup>
+                </Col>
+                <Col xs={4}>
+                    <FormGroup className="expiry">
+                        <ControlLabel >Expires</ControlLabel>
+                        <div className="expiry">
+                            <FormControl type="text" placeholder="MM" name="month"
+                                         onChange={handleChange}/>
+                            <FormControl type="text" placeholder="YYYY" name="year"
+                                         onChange={handleChange}/>
+                        </div>
+                    </FormGroup>
+                </Col>
+            </Row>
+        </div>;
+
+        const renderBillingAddress = () => <div>
+            < ControlLabel >Address</ControlLabel>
+            < Row>
+                < Col xs={12}>
+                    <FormControl type="text" name="addrLine1" placeholder="address line 1" onChange={handleChange}/>
+                </Col>
+            </Row>
+            < Row>
+                < Col xs={12}>
+                    <FormControl type="text" name="addrLine2" placeholder="address line 2" onChange={handleChange}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={6}>
+                    <FormControl type="text" placeholder="city" name="city" onChange={handleChange}/>
+                </Col>
+                <Col xs={6}>
+                    <FormControl type="text" placeholder="state" name="year" onChange={handleChange}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={6}>
+                    <FormControl type="text" placeholder="zip code" name="zipCode" onChange={handleChange}/>
+                </Col>
+                <Col xs={6}>
+                    <FormControl type="text" placeholder="country" name="country" onChange={handleChange}/>
+                </Col>
+            </Row>
+        </div>;
+
         return (
             <form onSubmit={handleSubmit} className="tab-content">
                 <Row>
-                    <Col md={6}>
-                        <Row>
-                            <Col md={12}>
-                                <div>100% money back guarantee for the first 30 days on paid plans.</div>
-                            </Col>
-                        </Row>
-                        <Row id="expiry">
-                            <Col md={6}>
-                                <FormGroup controlId="formControlsSelect">
-                                    <ControlLabel>Expiry Month</ControlLabel>
-                                    <FormControl componentClass="select" placeholder="select">
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option value="3">03</option>
-                                        <option value="4">04</option>
-                                        <option value="5">05</option>
-                                        <option value="6">06</option>
-                                        <option value="7">07</option>
-                                        <option value="8">08</option>
-                                        <option value="9">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </FormControl>
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
-                                <FormGroup controlId="formControlsSelect">
-                                    <ControlLabel>Expiry Year</ControlLabel>
-                                    <FormControl componentClass="select" placeholder="select">
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
-                                        <option value="2027">2027</option>
-                                        <option value="2028">2028</option>
-                                        <option value="2029">2029</option>
-                                        <option value="2030">2030</option>
-                                        <option value="2031">2031</option>
-                                        <option value="2032">2032</option>
-                                        <option value="2033">2033</option>
-                                        <option value="2034">2034</option>
-                                        <option value="2035">2035</option>
-                                    </FormControl>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <InputGroup id="CVV">
-                            <InputGroup.Addon>CVV</InputGroup.Addon>
-                            <FormControl type="text" placeholder="123"/>
-                        </InputGroup>
-                    </Col>
-                    <Col md={6} id="panel-pricing">
-                        <div className="panel panel-success panel-pricing">
-                            <div className="panel-heading">
-                                <h1>
-                                    <NavDropdown title={this.state.plan.name} id="planName" onSelect={handleSelect}>
-                                        <MenuItem eventKey={1}>{planList.plans[0].name}</MenuItem>
-                                        <MenuItem eventKey={2}>{planList.plans[1].name}</MenuItem>
-                                        <MenuItem eventKey={3}>{planList.plans[2].name}</MenuItem>
-                                        <MenuItem eventKey={4}>{planList.plans[3].name}</MenuItem>
-                                        <MenuItem eventKey={5}>{planList.plans[4].name}</MenuItem>
-                                    </NavDropdown>
-                                </h1>
-                            </div>
-                            <div className="panel-body text-center">
-                                <p><strong>${this.state.plan.cost} / Month</strong></p>
-                            </div>
-                            <ul className="list-group text-center">
-                                <li className="list-group-item">DB(API Calls/Storage):
-                                    <strong> {this.state.plan.apiCalls}/{this.state.plan.storage}{this.state.plan.storageUnit}</strong>
-                                </li>
-                                <li className="list-group-item">Connections:
-                                    <strong> {this.state.plan.connections}</strong></li>
-                                <li className="list-group-item">Mongo DB:
-                                    <strong> {this.state.plan.mongoDbAccess ? <Check /> : " -"}</strong></li>
-                            </ul>
-                            <div className="panel-footer">
-                                <a className="btn btn-lg btn-block btn-success" type="submit">BUY NOW!</a>
-                                <Clearfix />
-                            </div>
+                    <Col xs={8}>
+                        <div className="payment-box clearfix">
+                            {
+                                !this.state.upgradeClicked ? renderCardDetail() : renderBillingAddress()
+                            }
                         </div>
                     </Col>
-                </Row>
+                    <Col xs={4} className="panel-pricing">
+                        <Row>
+                            <div className="panel panel-success panel-pricing">
+                                <div className="panel-heading">
+                                    <h1>
+                                        <NavDropdown title={this.state.plan.name} id="planName" onSelect={handleSelect}>
+                                            <MenuItem eventKey={1}>{planList.plans[0].name}</MenuItem>
+                                            <MenuItem eventKey={2}>{planList.plans[1].name}</MenuItem>
+                                            <MenuItem eventKey={3}>{planList.plans[2].name}</MenuItem>
+                                            <MenuItem eventKey={4}>{planList.plans[3].name}</MenuItem>
+                                            <MenuItem eventKey={5}>{planList.plans[4].name}</MenuItem>
+                                        </NavDropdown>
+                                    </h1>
+                                </div>
+                                <div className="panel-body text-center">
+                                    <p><strong>${this.state.plan.cost} / Month</strong></p>
+                                </div>
+                                <ul className="list-group text-center">
+                                    <li className="list-group-item">DB(API Calls/Storage):
+                                        <strong> {this.state.plan.apiCalls}/{this.state.plan.storage}{this.state.plan.storageUnit}</strong>
+                                    </li>
+                                    <li className="list-group-item">Connections:
+                                        <strong> {this.state.plan.connections}</strong></li>
+                                    <li className="list-group-item">Mongo DB:
+                                        <strong> {this.state.plan.mongoDbAccess ? <Check /> : " -"}</strong></li>
+                                </ul>
+                                <div className="panel-footer">
 
-                <InputGroup>
-                    <InputGroup.Addon><CreditCard color={grey500}/></InputGroup.Addon>
-                    <FormControl type="text" placeholder="1234 5678 9012 3456"/>
-                </InputGroup>
-                <InputGroup>
-                    <InputGroup.Addon><strong>Name on card</strong></InputGroup.Addon>
-                    <FormControl type="text" placeholder="Firstname Lastname"/>
-                </InputGroup>
-            </form>
+
+                                    {this.state.upgradeClicked ? <div className="goback">
+                                            <Button className="btn btn-lg btn-block btn-success payment-button"
+                                                    type="submit"
+                                                    value="Submit">Pay</Button>
+                                            <Clearfix />
+                                            <a onClick={handleGoBack}>Go Back</a>
+                                        </div>
+
+                                        : <div>
+                                            < Button className="btn btn-lg btn-block btn-success" type="submit"
+                                                     value="Submit">BUY NOW!</Button>
+                                            <Clearfix />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </Row>
+                    </Col>
+                </Row>
+            </form >
         );
     }
 }
 
-export default reduxForm({
-    form: 'upgrade' // a unique name for this form
-})(Upgrade);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        purchase: (appId, cardDetails, plan) => dispatch(createSale(appId, cardDetails, plan))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Upgrade);

@@ -6,6 +6,7 @@ import * as api from '../fakeAPI';
 import {xhrDashBoardClient, xhrAccountsClient, xhrCBClient} from '../xhrClient';
 import {loadState, deleteAllCookies} from '../helper';
 import {browserHistory} from 'react-router';
+import {twoCheckoutCredentials} from '../config';
 
 export function fetchApps() {
 
@@ -830,6 +831,7 @@ export function fetchCount(appId, tableName, masterKey) {
 
     };
 }
+
 export function fetchRows(appId, tableName, masterKey) {
 
     return function (dispatch) {
@@ -858,3 +860,49 @@ export function fetchRows(appId, tableName, masterKey) {
 
     };
 }
+
+export const createSale = (appId, cardDetails, planId) => {
+    return function (dispatch) {
+
+        let args = {
+            sellerId: twoCheckoutCredentials.sellerId,
+            publishableKey: twoCheckoutCredentials.publishableKey,
+            ccNo: cardDetails.number,
+            cvv: cardDetails.cvc,
+            expMonth: cardDetails.expMonth,
+            expYear: cardDetails.expYear,
+        };
+        let TCO="";
+        TCO.loadPubKey(twoCheckoutCredentials.mode, function () {
+
+            TCO.requestToken(
+                function (data) {
+                    if (!data) {
+                        console.log("Create Token failed,try again..");
+                    } else {
+                        let reqObj = {
+                            token: data.response.token.token,
+                            billingAddr: cardDetails.billing,
+                            planId: planId
+                        };
+                        xhrDashBoardClient.post('/' + appId + '/sale', reqObj)
+                            .then(response => {
+                                console.log(response);
+                            })
+                            .catch(error => {
+                                console.log('inside createSale error catch error: ');
+                                console.log(error);
+                            });
+                    }
+                },
+                function (data) {
+                    if (data.errorCode === 200) {
+                        console.log("Opps! Something went wrong, Try again.");
+                    } else {
+                        console.log(data.errorMsg);
+                    }
+                },
+                args);
+        });
+    };
+};

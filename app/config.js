@@ -10,7 +10,12 @@ let globals = () => {
             analyticsAPI: '',
             accountsURL: 'https://accounts.cloudboost.io',
             accountsAPI: 'https://service.cloudboost.io',
-            cloudBoostAPI: 'http://api.cloudboost.io'
+            cloudBoostAPI: 'http://api.cloudboost.io',
+            twoCheckoutCredentials: {
+                sellerId: "202796222",
+                publishableKey: "EB50E085-0670-49C7-82EE-2C5977488771",
+                mode: "production"
+            }
         };
     }
     return {
@@ -18,7 +23,12 @@ let globals = () => {
         analyticsAPI: '',
         accountsURL: 'http://localhost:1447',
         accountsAPI: 'http://localhost:3000',
-        cloudBoostAPI: 'http://localhost:4730'
+        cloudBoostAPI: 'http://localhost:4730',
+        twoCheckoutCredentials: {
+            sellerId: "901307760",
+            publishableKey: "5DB21AAF-317D-4FCB-A985-DD296ECDF71A",
+            mode: "sandbox"
+        }
     };
 };
 
