@@ -43,11 +43,10 @@ class Projecthead extends React.Component {
                         <Modal.Title>New App</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input
-                            value={this.state.value}
-                            placeholder="Pick a good name"
-                            onChange={this.handleChange}
-
+                        <FormControl type="text"
+                                     value={this.state.value}
+                                     placeholder="Pick a good name"
+                                     onChange={this.handleChange}
                         />
                     </Modal.Body>
                     <Modal.Footer>
