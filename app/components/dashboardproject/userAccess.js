@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import  {Table} from 'react-bootstrap';
 import Close from 'material-ui/svg-icons/navigation/close';
 import {grey500} from 'material-ui/styles/colors';
-import {sendInvitation, fetchDevDetails, deleteDev,deleteInvite} from '../../actions/index';
+import {sendInvitation, fetchDevDetails, deleteDev, deleteInvite} from '../../actions/index';
 import {FormGroup, InputGroup, FormControl, Button, Clearfix} from 'react-bootstrap';
 
 const iconStyles = {
@@ -46,7 +46,7 @@ class UserAccess extends Component {
         };
 
         return (
-            <div>
+            <div className="tab-content">
                 <FormGroup>
                     <InputGroup>
                         <InputGroup.Addon>@</InputGroup.Addon>

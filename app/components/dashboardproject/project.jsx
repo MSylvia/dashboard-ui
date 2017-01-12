@@ -20,8 +20,9 @@ const iconStyles = {
 };
 
 const logoStyles = {
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 50,
+    marginTop: 8,
 };
 
 const Project = React.createClass({
@@ -42,16 +43,16 @@ const Project = React.createClass({
     },
 
     open1() {
-        this.setState({showModal: true, selectedTab: "addDev"});
+        this.setState({showModal: true, selectedTab: "addDev", displayText: "Add Developers"});
     },
     open2() {
-        this.setState({showModal: true, selectedTab: "keys"});
+        this.setState({showModal: true, selectedTab: "keys", displayText: "App Keys"});
     },
     open3() {
-        this.setState({showModal: true, selectedTab: "upgrade"});
+        this.setState({showModal: true, selectedTab: "upgrade", displayText: "Upgrade Plan"});
     },
     delete(){
-        this.setState({showModal: true, selectedTab: "delete"});
+        this.setState({showModal: true, selectedTab: "delete", displayText: "Delete App"});
     },
 
 
@@ -65,17 +66,21 @@ const Project = React.createClass({
         return (
             <div className="project">
                 <div className="plan-status">{planName}</div>
-                <Icon style={logoStyles} color={blue500}> </Icon>
-                <ProjectName
-                    name={this.props.name}
-                    appId={this.props.appId}
-                />
-                <Progressbar />
+                <div className="app-info">
+                    <div className="app-icon">
+                        <Icon style={logoStyles} color={blue500}> </Icon>
+                    </div>
+                    <ProjectName
+                        name={this.props.name}
+                        appId={this.props.appId}
+                    />
+                    <Progressbar />
+                </div>
                 <div className="project-option">
                     <div >
                         <PersonAdd style={iconStyles} color={grey500} onClick={this.open1}/>
                         <Key style={iconStyles} color={grey500} onClick={this.open2}/>
-                        <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open2}/>
+                        <FileCloudUpload style={iconStyles} color={grey500} onClick={this.open3}/>
                         <IconDelete style={iconStyles} color={grey500} onClick={this.delete}/>
                         <ManageApp style={iconStyles}
                                    color={grey500}
@@ -86,9 +91,9 @@ const Project = React.createClass({
                                    )}
                         />
                     </div>
-                    <Modal show={this.state.showModal} onHide={this.close} dialogClassName='app-setting'>
+                    <Modal show={this.state.showModal} bsSize={ (this.state.selectedTab === 'upgrade')?'large': null} onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
-                            <Modal.Title>Settings</Modal.Title>
+                            <Modal.Title>{ this.state.displayText}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <AppSetting id={this.props._id}

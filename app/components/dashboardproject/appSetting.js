@@ -15,44 +15,24 @@ const AppSetting = (props) => {
     };
 
     return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey={props.selectedTab}>
-            <div>
-                <Nav bsStyle="tabs">
-                    <NavItem eventKey="addDev">
-                        Add Developers
-                    </NavItem>
-                    <NavItem eventKey="keys">
-                        App Keys
-                    </NavItem>
-
-                    <NavItem eventKey="upgrade">
-                        Upgrade
-                    </NavItem>
-                    <NavItem eventKey="delete">
-                        Delet App
-                    </NavItem>
-                </Nav>
-                <Tab.Content animation>
-                    <Tab.Pane eventKey="addDev">
-                        <UserAccess id={props.id} appId={props.appId} invited={props.invited}/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="keys">
-                        <Keys id={props.id}
-                              appId={props.appId}
-                              clientKey={props.clientKey}
-                              masterKey={props.masterKey}
-                        />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="upgrade">
-                        <Upgrade onSubmit={handleSubmit} planId={props.planId}/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="delete">
-                        <DeleteApp appId={props.appId}/>
-                    </Tab.Pane>
-                </Tab.Content>
-
-            </div>
-        </Tab.Container>
+        <div>
+            { (props.selectedTab === 'addDev') ?
+                <UserAccess id={props.id} appId={props.appId} invited={props.invited}/> : <div></div>
+            }
+            { (props.selectedTab === 'keys') ?
+                <Keys id={props.id}
+                      appId={props.appId}
+                      clientKey={props.clientKey}
+                      masterKey={props.masterKey}
+                /> : <div></div>
+            }
+            { (props.selectedTab === 'upgrade') ?
+                <Upgrade onSubmit={handleSubmit} planId={props.planId} id={props.id} appId={props.appId}/> : <div></div>
+            }
+            {  (props.selectedTab === 'delete') ?
+                <DeleteApp appId={props.appId}/> : <div></div>
+            }
+        </div>
     );
 };
 

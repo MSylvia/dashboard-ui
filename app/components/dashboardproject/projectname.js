@@ -36,23 +36,23 @@ class ProjectName extends React.Component {
             console.log(this.state.editMode);
             return (
                 <div className="relative-pos">
-                    <p>
+                    <h3>
                         {this.props.name}
                         <EditIcon style={iconStyles} color={grey500} onClick={editName}/>
-                    </p>
+                    </h3>
                 </div>
             );
         }
         else {
             return (
                 <div className="relative-pos">
-                    <p>
+                    <h3>
                         <input ref="input" defaultValue={this.props.name} onChange={handleChange}/>
                         <CloseIcon style={iconStyles} color={grey500} onClick={() => {
                             closeEditing();
                             this.props.onNameChange(this.props.appId, this.state.value);
                         }}/>
-                    </p>
+                    </h3>
                 </div>
             );
         }

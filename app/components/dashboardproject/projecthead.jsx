@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, Button, FormControl} from 'react-bootstrap';
-import {addApp} from '../../actions';
+import {addApp, createRoleTable} from '../../actions';
 import {connect} from 'react-redux';
 
 class Projecthead extends React.Component {
@@ -20,12 +20,15 @@ class Projecthead extends React.Component {
     handleChange = (e) => this.setState({value: e.target.value});
 
     createApp = () => {
-        let temp = addApp(this.state.value);
-        console.log("dispatch Add App :" + JSON.stringify(temp));
         this.props.dispatch(addApp(this.state.value));
         this.setState({
             showModal: false, value: ''
         });
+    };
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.newAppCreated)
+            nextProps.createRoleTable(nextProps.appId, nextProps.masterKey);
     };
 
     render() {
@@ -33,18 +36,17 @@ class Projecthead extends React.Component {
         console.log(this.props);
         return (
             <div className="project-head">
-                <p>Projects</p>
+                <h1 className="dashboard-title pull-left">Apps</h1>
                 <div className="btn" onClick={this.open}>+ New App</div>
                 <Modal show={this.state.showModal} onHide={this.close} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
                         <Modal.Title>New App</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <input
-                            value={this.state.value}
-                            placeholder="Pick a good name"
-                            onChange={this.handleChange}
-
+                        <FormControl type="text"
+                                     value={this.state.value}
+                                     placeholder="Pick a good name"
+                                     onChange={this.handleChange}
                         />
                     </Modal.Body>
                     <Modal.Footer>
@@ -56,10 +58,26 @@ class Projecthead extends React.Component {
         );
     }
 }
-const mapDispatchToProps = (dispatch) => {
+
+
+const mapStateToProps = (state) => {
+    if (state == null) {
+        return {newAppCreated: false}
+    }
+
+    let newAppCreated = (state.manageApp.newAppCreated ? true : false);
     return {
-        dispatch: dispatch
+        newAppCreated: newAppCreated,
+        masterKey: state.apps.length > 0 ? state.apps[state.apps.length - 1].keys.master : "",
+        appId: state.apps.length > 0 ? state.apps[state.apps.length - 1].appId : ""
     };
 };
 
-export default connect(null, mapDispatchToProps)(Projecthead);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: dispatch,
+        createRoleTable: (appId, masterKey) => dispatch(createRoleTable(appId, masterKey))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projecthead);
