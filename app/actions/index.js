@@ -872,9 +872,9 @@ export const createSale = (appId, cardDetails, planId) => {
             expMonth: cardDetails.expMonth,
             expYear: cardDetails.expYear,
         };
-        let TCO="";
         TCO.loadPubKey(twoCheckoutCredentials.mode, function () {
 
+            console.log("huha");
             TCO.requestToken(
                 function (data) {
                     if (!data) {
@@ -902,7 +902,8 @@ export const createSale = (appId, cardDetails, planId) => {
                         console.log(data.errorMsg);
                     }
                 },
-                args);
+                args
+            );
         });
     };
 };

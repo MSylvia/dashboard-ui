@@ -15,7 +15,7 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
 
-  label, .control-label{
+  label, .control-label {
     font-weight: 500 !important;
   }
 
@@ -314,7 +314,7 @@ body {
   }
 
   .modal-lg {
-    min-width: 750px !important;
+    min-width: 850px !important;
   }
 
   //Remove classes that are not needed for our app
@@ -450,6 +450,26 @@ body {
 
         td {
           align: center;
+        }
+
+        //payment start
+        .error {
+          min-height: 25px;
+          width: 100%;
+          margin-bottom: 10px;
+          background-color: #F14D54;
+          padding: 2px 5px;
+          color: #fff;
+          border-radius: 3px;
+        }
+
+        .payment-row {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        .payment-col {
+          padding-left: 0;
         }
 
         .payment-box {
