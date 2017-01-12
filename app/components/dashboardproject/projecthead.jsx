@@ -36,7 +36,7 @@ class Projecthead extends React.Component {
         console.log(this.props);
         return (
             <div className="project-head">
-                <p>Projects</p>
+                <h1 className="dashboard-title pull-left">Apps</h1>
                 <div className="btn" onClick={this.open}>+ New App</div>
                 <Modal show={this.state.showModal} onHide={this.close} dialogClassName="custom-modal">
                     <Modal.Header closeButton>
