@@ -323,7 +323,7 @@ class Upgrade extends React.Component {
                                  onChange={handleChange}>
                         {
                             paymentCountries.map((country) => {
-                                return <option key={country.code} value={country.code}> {country.label}</option>
+                                return <option key={country.code} value={country.code}> {country.label}</option>;
                             })
                         }
                     </FormControl>
