@@ -20,8 +20,7 @@ class Projectscontainer extends React.Component {
     }
 
     render() {
-        console.log("Inside project container, state :");
-        console.log(this.props);
+
         return (
             <div style={styles.root}>
                 <Grid className="projects-container">
@@ -52,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onProjectClick: (appId, masterKey,name) => dispatch(manageApp(appId, masterKey,name)),
+        onProjectClick: (appId, masterKey, name) => dispatch(manageApp(appId, masterKey, name)),
         onLoad: () => dispatch(fetchApps())
     };
 };

@@ -57,8 +57,6 @@ const Project = React.createClass({
 
 
     render: function () {
-        console.log("inside Project component this.props: ");
-        console.log(this.props);
         let planName = "";
         if (this.props.planId == 1)
             planName = "Free Plan";
@@ -74,7 +72,7 @@ const Project = React.createClass({
                         name={this.props.name}
                         appId={this.props.appId}
                     />
-                    <Progressbar />
+                    <Progressbar appId={this.props.appId} planId={this.props.planId}/>
                 </div>
                 <div className="project-option">
                     <div >
@@ -91,7 +89,8 @@ const Project = React.createClass({
                                    )}
                         />
                     </div>
-                    <Modal show={this.state.showModal} bsSize={ (this.state.selectedTab === 'upgrade')?'large': null} onHide={this.close} dialogClassName='app-setting'>
+                    <Modal show={this.state.showModal} bsSize={ (this.state.selectedTab === 'upgrade') ? 'large' : null}
+                           onHide={this.close} dialogClassName='app-setting'>
                         <Modal.Header closeButton>
                             <Modal.Title>{ this.state.displayText}</Modal.Title>
                         </Modal.Header>

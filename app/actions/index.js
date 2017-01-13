@@ -18,6 +18,9 @@ export function fetchApps() {
                     type: 'FETCH_APPS',
                     payload: response.data
                 });
+
+                let appIdArray = response.data.map((app) => app.appId);
+                dispatch(getAnalyticsData(appIdArray));
             })
             .catch(error => {
                 console.log('inside fetch Apps error catch error: ');
@@ -907,3 +910,26 @@ export const createSale = (appId, cardDetails, planId) => {
         });
     };
 };
+
+export function getAnalyticsData(appIdArray) {
+    return function (dispatch) {
+        xhrDashBoardClient
+            .post('/analytics/api-storage/bulk/count',
+                {appIdArray: appIdArray}
+            )
+            .then(response => {
+                dispatch({
+                    type: 'RECEIVE_ANALYTICS',
+                    payload: response.data
+                });
+            })
+            .catch(error => {
+                console.log('inside getAnalyticsData Apps error catch error: ');
+                console.log(error);
+                /* dispatch({
+                 type: 'LOGOUT'
+                 }); */
+            });
+
+    };
+}
