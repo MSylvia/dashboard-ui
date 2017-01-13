@@ -4,7 +4,7 @@ import React, {PropTypes} from 'react';
 import ProjectName from './projectname.js';
 import Progressbar from './progressbar.jsx';
 import {Modal} from 'react-bootstrap';
-import AppSetting from './appSetting';
+import OptionsModal from './OptionsModal';
 
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import FileCloudUpload from 'material-ui/svg-icons/file/cloud-upload';
@@ -90,12 +90,12 @@ const Project = React.createClass({
                         />
                     </div>
                     <Modal show={this.state.showModal} bsSize={ (this.state.selectedTab === 'upgrade') ? 'large' : null}
-                           onHide={this.close} dialogClassName='app-setting'>
+                           onHide={this.close} dialogClassName='options-modal'>
                         <Modal.Header closeButton>
                             <Modal.Title>{ this.state.displayText}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <AppSetting id={this.props._id}
+                            <OptionsModal id={this.props._id}
                                         appId={this.props.appId}
                                         masterKey={this.props.keys.master}
                                         clientKey={this.props.keys.js}
