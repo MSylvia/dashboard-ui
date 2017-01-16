@@ -8,7 +8,7 @@ import Keys from './keys';
 import DeleteApp from './deleteApp';
 import {Tab, Nav, NavItem} from 'react-bootstrap';
 
-const AppSetting = (props) => {
+const OptionsModal = (props) => {
 
     const handleSubmit = (values) => {
         console.log(values);
@@ -36,4 +36,4 @@ const AppSetting = (props) => {
     );
 };
 
-export default AppSetting;
+export default OptionsModal;

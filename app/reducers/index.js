@@ -3,6 +3,7 @@ import apps from './apps';
 import user from './user';
 import userList from './userList';
 import manageApp from './manageApp';
+import analytics from './analytics';
 import {reducer as formReducer} from 'redux-form';
 
 const todoApp = combineReducers({
@@ -10,6 +11,7 @@ const todoApp = combineReducers({
     user,
     userList,
     manageApp,
+    analytics,
     form: formReducer
 });
 

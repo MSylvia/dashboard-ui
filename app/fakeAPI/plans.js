@@ -9,8 +9,10 @@ export default {
             cost: 0,
             timePeriod: 'Month',
             apiCalls: 10000,
+            numApiCalls: 10000,
             storage: 200,
             storageUnit: 'MB',
+            numStorage: 200,
             connections: 500,
             mongoDbAccess: false
         }, {
@@ -19,8 +21,10 @@ export default {
             cost: 49,
             timePeriod: 'Month',
             apiCalls: 250000,
+            numApiCalls: 250000,
             storage: 5,
             storageUnit: 'GB',
+            numStorage: 5120,
             connections: 500,
             mongoDbAccess: true
         }, {
@@ -29,8 +33,10 @@ export default {
             cost: '149',
             timePeriod: 'Month',
             apiCalls: '1 MILLION',
+            numApiCalls: 1000000,
             storage: '10',
             storageUnit: 'GB',
+            numStorage: 10240,
             connections: 'UNLIMITED',
             mongoDbAccess: true
         }, {
@@ -39,8 +45,10 @@ export default {
             cost: '449',
             timePeriod: 'Month',
             apiCalls: '5 MILLION',
+            numApiCalls: 5000000,
             storage: 30,
             storageUnit: 'GB',
+            numStorage: 30720,
             connections: 'UNLIMITED',
             mongoDbAccess: true
         }, {
@@ -49,8 +57,10 @@ export default {
             cost: 1449,
             timePeriod: 'Month',
             apiCalls: '10 MILLION',
+            numApiCalls: 10000000,
             storage: 100,
             storageUnit: 'GB',
+            numStorage: 102400,
             connections: 'UNLIMITED',
             mongoDbAccess: true
         }
