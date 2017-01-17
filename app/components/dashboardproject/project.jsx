@@ -4,7 +4,7 @@ import React, {PropTypes} from 'react';
 import ProjectName from './projectname.js';
 import Progressbar from './progressbar.jsx';
 import {Modal} from 'react-bootstrap';
-import OptionsModal from './OptionsModal';
+import OptionsModal from './optionsModal';
 
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import FileCloudUpload from 'material-ui/svg-icons/file/cloud-upload';

@@ -875,9 +875,11 @@ export const createSale = (appId, cardDetails, planId) => {
             expMonth: cardDetails.expMonth,
             expYear: cardDetails.expYear,
         };
+        //TCO is a global variable defined outside in an externally linked JS and hence produces linting error,
+        // which leads to issues in watching styles the way gulp tasks is configured and hence this empty object only for developement
+        //let TCO = {};
         TCO.loadPubKey(twoCheckoutCredentials.mode, function () {
 
-            console.log("huha");
             TCO.requestToken(
                 function (data) {
                     if (!data) {
